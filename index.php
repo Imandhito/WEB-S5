@@ -45,7 +45,6 @@
   ======================================================== -->
 
   <?php include_once 'logics/connect.php';
-  $temp_id = $_GET['id'];
   $sql = "SELECT * FROM vehicle";
   $sql_article = "SELECT * FROM article";
   $result = $conn->query($sql);

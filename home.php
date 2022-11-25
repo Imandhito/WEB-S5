@@ -25,10 +25,10 @@
 
 </head>
 
-<body>
+<body class="toggle-sidebar">
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+  <header id=" header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -212,7 +212,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -258,10 +258,10 @@
 
   <!-- ======= Sidebar ======= -->
   <?php
-  if ($data->role = "user") {
-    include('layout-sidebar.php');
-  } else {
+  if (strcmp($data->role, "admin") == 0) {
     include('layout-sidebar-admin.php');
+  } else {
+    include('layout-sidebar.php');
   }
   ?>
   <!-- End Sidebar-->

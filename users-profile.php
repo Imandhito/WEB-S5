@@ -36,9 +36,10 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  <?php include_once 'connect.php'; 
-  $temp_id = $_GET['id'];
-  $sql = "SELECT * FROM user WHERE id = ".$temp_id;
+  <?php include 'logics/connect.php';
+  session_start();
+  $temp_id = $_SESSION['user_id'];
+  $sql = "SELECT * FROM user WHERE id = " . $temp_id;
   $result = $conn->query($sql);
   $value = $result->fetch_object();
   ?>
@@ -224,7 +225,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?= $value->name ?></h6>
-              <span><?= empty($value->job)?"Doesn't have a job":$value->job ?></span>
+              <span><?= empty($value->job) ? "Doesn't have a job" : $value->job ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -356,7 +357,7 @@
 
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
               <h2><?= $value->name ?></h2>
-              <h3><?= isset($value->job)?"Doesn't have a job":$value->job ?></h3>
+              <h3><?= isset($value->job) ? "Doesn't have a job" : $value->job ?></h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -396,7 +397,7 @@
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <h5 class="card-title">About</h5>
-                  <p class="small fst-italic"><?= empty($value->about)?"Empty":$value->about ?></p>
+                  <p class="small fst-italic"><?= empty($value->about) ? "Empty" : $value->about ?></p>
 
                   <h5 class="card-title">Profile Details</h5>
 
@@ -412,17 +413,17 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Job</div>
-                    <div class="col-lg-9 col-md-8"><?= empty($value->job)?"Doesn't have a job":$value->job ?></div>
+                    <div class="col-lg-9 col-md-8"><?= empty($value->job) ? "Doesn't have a job" : $value->job ?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Country</div>
-                    <div class="col-lg-9 col-md-8"><?= empty($value->country)?"Exiled":$value->country ?></div>
+                    <div class="col-lg-9 col-md-8"><?= empty($value->country) ? "Exiled" : $value->country ?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Address</div>
-                    <div class="col-lg-9 col-md-8"><?= empty($value->address)?"Doesn't have an address":$value->job ?></div>
+                    <div class="col-lg-9 col-md-8"><?= empty($value->address) ? "Doesn't have an address" : $value->job ?></div>
                   </div>
 
                   <div class="row">
@@ -440,8 +441,8 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form method="POST" action="forms/user-edit.php">
-                    
+                  <form method="POST" action="logics/user-edit.php">
+
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
@@ -456,7 +457,7 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                       <div class="col-md-8 col-lg-9">
-                      <input name="id_user" type="hidden" value="<?= $temp_id ?>" />
+                        <input name="id_user" type="hidden" value="<?= $temp_id ?>" />
                         <input name="name" type="text" class="form-control" id="fullName" value="<?= $value->name ?>">
                       </div>
                     </div>
@@ -464,7 +465,7 @@
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px"><?= empty($value->about)?"Empty":$value->about ?></textarea>
+                        <textarea name="about" class="form-control" id="about" style="height: 100px"><?= empty($value->about) ? "Empty" : $value->about ?></textarea>
                       </div>
                     </div>
 
@@ -478,21 +479,21 @@
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="<?= empty($value->job)?"Exiled":$value->job ?>">
+                        <input name="job" type="text" class="form-control" id="Job" value="<?= empty($value->job) ? "Exiled" : $value->job ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="<?= empty($value->country)?"Exiled":$value->country ?>">
+                        <input name="country" type="text" class="form-control" id="Country" value="<?= empty($value->country) ? "Exiled" : $value->country ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="<?= empty($value->address)?"Doesn't have an address":$value->job ?>">
+                        <input name="address" type="text" class="form-control" id="Address" value="<?= empty($value->address) ? "Doesn't have an address" : $value->job ?>">
                       </div>
                     </div>
 
@@ -509,7 +510,7 @@
                         <input name="email" type="email" class="form-control" id="Email" value="<?= $value->email ?>">
                       </div>
                     </div>
-<!-- 
+                    <!-- 
                     <div class="row mb-3">
                       <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
                       <div class="col-md-8 col-lg-9">
@@ -589,12 +590,12 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form method="POST" action="forms/change-password.php">
+                  <form method="POST" action="logics/change-password.php">
 
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-md-8 col-lg-9">
-                      <input name="id_user" type="hidden" value="<?= $temp_id ?>" />
+                        <input name="id_user" type="hidden" value="<?= $temp_id ?>" />
                         <input name="current_password" type="password" class="form-control" id="currentPassword">
                       </div>
                     </div>
