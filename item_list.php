@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("location:pages-login.php");
+}
+?>
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -35,6 +42,10 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <?php include 'logics/connect.php';
+  $sql = 'SELECT * FROM vehicle';
+  $result = $conn->query($sql);
+  ?>
 </head>
 
 <body>
@@ -43,7 +54,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">RoamRent.</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -268,147 +279,70 @@
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
-          <i class="bi bi-grid"></i>
-          <span>Home</span>
-        </a>
-      </li><!-- End Home Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Vehicles</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="item_list.html">
-              <i class="bi bi-circle"></i><span>Mobil</span>
-            </a>
-          </li>
-          <li>
-            <a href="item_list.html">
-              <i class="bi bi-circle"></i><span>Motor</span>
-            </a>
-          </li>
-          <li>
-            <a href="item_list.html">
-              <i class="bi bi-circle"></i><span>Sepedah Pancal</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Vehicles Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="blog.html">
-          <i class="bi bi-grid"></i>
-          <span>News</span>
-        </a>
-      </li><!-- End News Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html#contact">
-          <i class="bi-activity"></i>
-          <span>Contact Us</span>
-        </a>
-      </li><!-- End News Nav -->
-    </ul>
-
-  </aside><!-- End Sidebar-->
+  <?php include('layout-sidebar.php'); ?>
+  <!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Tesla_Model_X</h1>
+      <h1>Daftar Kendaraan</h1>
+      <nav>
+        <p>Berbagai kendaraan pilihan dari kami</p>
+      </nav>
     </div><!-- End Page Title -->
-
     <section class="section">
-      <div class="row">
-        
+      <div class="row align-items-top">
+        <div class="col">
 
-              <!-- Default Accordion -->
-              <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      <strong>Produk</strong>
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body align-items-center">
-                      <img src="assets/img/Tesla_Model_X.jpg" class="img-responsive rounded-start" alt="...">
-                      <div class="content align-items-center">
-                        Tesla Model X merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari.
-                      </div>
-                    </div>
+          <?php
+          while ($row = $result->fetch_assoc()) {
+          ?>
+            <!-- Card with an image on left -->
+
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="<?= $row['img_url'] ?>" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><?= $row['name'] ?></h5>
+                    <ul class="list-group">
+                      <!-- <li class="list-group-item">
+                      <i class="ri-gas-station-line text-warning"></i>
+                      Petrol, Max 15 Liter
+                    </li> -->
+                      <li class="list-group-item">
+                        <i class="bi bi-people text-primary"></i>
+                        <?= $row['passanger'] ?> Orang
+                      </li>
+                      <li class="list-group-item">
+                        <i class="ri-equalizer-line me-1 text-success"></i>
+                        AC, Radio, GPS, MEdium Cargo
+                      </li>
+                      <li class="list-group-item">
+                        <i class="bx bxs-purchase-tag text-danger"></i>
+                        Rp <?= $row['price'] ?>/hari
+                      </li>
+                    </ul>
+                    <a href="item_detail.php?id=<?= $row['id'] ?>" class="active">
+                      <button type="button" class="btn btn-primary">
+                        <i class="bi bi-eye me-1"></i>
+                        Detail
+                      </button>
+                    </a>
                   </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      Spesifikasi
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <div class="card mb-3">
-                        <div class="row g-0">
-                          <div class="col-md-4">
-                            <img src="assets/img/Tesla_Model_X.jpg" class="img-fluid rounded-start" alt="...">
-                          </div>
-                          <div class="col-md-8">
-                            <div class="card-body">
-                              <h5 class="card-title">Tesla_Model_X</h5>
-                              <ul class="list-group">
-                                <li class="list-group-item">
-                                  <i class="ri-gas-station-line text-warning"></i>
-                                  EV, Max 100 kWh
-                                </li>
-                                <li class="list-group-item">
-                                  <i class="bi bi-people text-primary"></i>
-                                  4 Orang
-                                </li>
-                                <li class="list-group-item">
-                                  <i class="ri-equalizer-line me-1 text-success"></i>
-                                  AC, Radio, GPS, Small Cargo
-                                </li>
-                                <li class="list-group-item">
-                                  <i class="bx bxs-purchase-tag text-danger"></i>
-                                  Rp 750.000/hari
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Pesan
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <strong>Pastikan anda telah membaca dan menyetujui aturan yang ada dan selalu mematuhi segala peraturan yang ada!.</strong>
-                      <a href="item_detail.html" class="active">
-                        <button type="button" class="btn btn-primary">
-                          <i class="bi bi-tags me-1"></i>
-                          Sewa
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End Default Accordion Example -->
+              </div>
+            </div>
+
+          <?php } ?>
 
 
-        
+        </div>
+
+      </div>
+
       </div>
     </section>
 
@@ -446,46 +380,3 @@
 </body>
 
 </html>
-
-
-
-
-
-<!--
-  <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="assets/img/CBR1000RR-R FIREBLADE.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">CBR1000RR-R FIREBLADE</h5>
-                  <ul class="list-group">
-                    <li class="list-group-item">
-                      <i class="ri-gas-station-line text-warning"></i>
-                      Petrol, Max 15 Liter
-                    </li>
-                    <li class="list-group-item">
-                      <i class="bi bi-people text-primary"></i>
-                      1 Orang
-                    </li>
-                    <li class="list-group-item">
-                      <i class="ri-equalizer-line me-1 text-success"></i>
-                      Helm, Jaket, Jas hujan
-                    </li>
-                    <li class="list-group-item">
-                      <i class="bx bxs-purchase-tag text-danger"></i>
-                      Rp 750.000/hari
-                    </li>
-                  </ul>
-                  <a href="item_detail.html" class="active">
-                    <button type="button" class="btn btn-primary">
-                      <i class="bi bi-eye me-1"></i>
-                      Pesan
-                    </button>
-                  </a>
-              </div>
-            </div>
-          </div>
-        </div>
--->

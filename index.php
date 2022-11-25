@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>HeroBiz Bootstrap Template - Home 1</title>
+  <title>RoamRent - Jasa Rental Kendaraan Darat</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -43,6 +43,14 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <?php include_once 'logics/connect.php';
+  $temp_id = $_GET['id'];
+  $sql = "SELECT * FROM vehicle";
+  $sql_article = "SELECT * FROM article";
+  $result = $conn->query($sql);
+  $result_article = $conn->query($sql_article);
+  ?>
 </head>
 
 <body>
@@ -54,85 +62,44 @@
       <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>HeroBiz<span>.</span></h1>
+        <h1>RoamRent<span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
 
-          <!--<li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="index.html" class="active">Home 1 - index.html</a></li>
+          <li>
+            <a href="#"><span>Home</span></a>
+            <!--<ul>
+              <li><a href="index.html">Home 1 - index.html</a></li>
               <li><a href="index-2.html">Home 2 - index-2.html</a></li>
-              <li><a href="index-3.html">Home 3 - index-3.html</a></li>
+              <li><a href="index-3.html" class="active">Home 3 - index-3.html</a></li>
               <li><a href="index-4.html">Home 4 - index-4.html</a></li>
-            </ul>
-          </li>-->
+            </ul>-->
+          </li>
 
           <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.html#portfolio">Our Vehicles</a></li>
+          <li><a class="nav-link scrollto" href="index.html#portfolio">Vehicles</a></li>
           <!--<li><a class="nav-link scrollto" href="index.html#team">Team</a></li>-->
-          <li><a href="blog.html">Blog</a></li>
-          <!--<li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li>
-                <a href="#">Column 1 link 1</a>
-                <a href="#">Column 1 link 2</a>
-                <a href="#">Column 1 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 2 link 1</a>
-                <a href="#">Column 2 link 2</a>
-                <a href="#">Column 3 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 3 link 1</a>
-                <a href="#">Column 3 link 2</a>
-                <a href="#">Column 3 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 4 link 1</a>
-                <a href="#">Column 4 link 2</a>
-                <a href="#">Column 4 link 3</a>
-              </li>
-            </ul>
-          </li>-->
-          <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>-->
+          <li><a class="nav-link scrollto" href="index.html#recent-blog-posts">News</a></li>
           <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="btn-getstarted scrollto" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted scrollto" href="login.php">Login</a>
 
     </div>
   </header><!-- End Header -->
 
-  <section id="hero-animated" class="hero-animated d-flex align-items-center">
-    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
-      <img src="assets/img/hero/hero-carousel/hero-carousel-3.svg" class="img-fluid animated">
-      <h2>Welcome to <span>HeroBiz</span></h2>
-      <p>Et voluptate esse accusantium accusamus natus reiciendis quidem voluptates similique aut.</p>
+  <section id="hero-fullscreen" class="hero-fullscreen d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center position-relative" data-aos="zoom-out">
+      <h2>Selamat Datang di <span>RoamRent</span></h2>
+      <p>Perjalanan ke mana pun ditemani oleh kendaraan kami dengan harga terjangkau.</p>
       <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        <a href="item_list.php" class="btn-get-started scrollto">Get Started</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>
     </div>
   </section>
@@ -140,7 +107,7 @@
   <main id="main">
 
     <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
+    <!--<section id="featured-services" class="featured-services">
       <div class="container">
 
         <div class="row gy-4">
@@ -151,7 +118,7 @@
               <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>&lt;!&ndash; End Service Item &ndash;&gt;
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
             <div class="service-item position-relative">
@@ -159,7 +126,7 @@
               <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
               <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>&lt;!&ndash; End Service Item &ndash;&gt;
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
             <div class="service-item position-relative">
@@ -167,7 +134,7 @@
               <h4><a href="" class="stretched-link">Magni Dolores</a></h4>
               <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>&lt;!&ndash; End Service Item &ndash;&gt;
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
             <div class="service-item position-relative">
@@ -175,12 +142,13 @@
               <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
               <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
             </div>
-          </div><!-- End Service Item -->
+          </div>&lt;!&ndash; End Service Item &ndash;&gt;
 
         </div>
 
       </div>
-    </section><!-- End Featured Services Section -->
+    </section>-->
+    <!-- End Featured Services Section -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -188,7 +156,10 @@
 
         <div class="section-header">
           <h2>About Us</h2>
-          <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
+          <p>
+            Layanan rental kendaraan dengan berbagai macam pilihan kendaraan darat.
+            <!--Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.-->
+          </p>
         </div>
 
         <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
@@ -200,13 +171,13 @@
           </div>
 
           <div class="col-lg-7">
-            <h3 class="pt-0 pt-lg-5">Neque officiis dolore maiores et exercitationem quae est seda lidera pat claero</h3>
+            <h3 class="pt-0 pt-lg-5">Bersama kami, layanan rental kendaraan darat no.1 kelas internasional</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
-              <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Saepe fuga</a></li>
-              <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Voluptates</a></li>
-              <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Corrupti</a></li>
+              <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Harga Terjangkau</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Bersih dan Aman</a></li>
+              <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Flexible</a></li>
             </ul><!-- End Tabs -->
 
             <!-- Tab Content -->
@@ -214,75 +185,79 @@
 
               <div class="tab-pane fade show active" id="tab1">
 
-                <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p>
+                <p class="fst-italic">
+                  Kualitas pelayananan dan kendaraan yang kami sediakan adalah yang hanya terpilih saja. Namun, harga kami juga sangat terjangkau apabila Anda tepat dalam memilih dan mengikuti selalu perkembangan kami.
+                </p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
+                  <h4>Semua harga akan ditampilkan langsung tanpa ada harga tambahan dibelakang.</h4>
                 </div>
-                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+                <p>Kami tidak akan menagih Anda lagi di luar harga yang sudah ditampilkan di aplikasi kami. Karena demi kenyamanan Anda, harga yang telah kami keluarkan sudah termasuk pajak, ansuransi, dan layanan kualitas premium kami.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Incidunt non veritatis illum ea ut nisi</h4>
+                  <h4>Dapat memilih pembayaran sesuka hati sesuai dengan kemampuan dan ketertarikan Anda.</h4>
                 </div>
-                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+                <p>Kami menyediaka berbagai macam opsi pilihan penyewaan. Di mana setiap pilihan akan mempengaruhi total harga layanan kami. Sehingga Anda bisa menyesuaikan dengan sesuka hati seusai dengan keinginan hati Anda</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
+                  <h4>Beragam macam pilihan kendaraan lama sampai yang terbaru</h4>
                 </div>
-                <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
+                <p>Demi pelanggan yang ingin bernostalgia dengan kendaraan zaman dahulu kala, kami juga menyediakannya dengan kualitas dan kebersihan seperti baru. Dengan banyaknya pilihan kendaraan pun, harga menjadi sangat bervariatif. Sehingga cocok bagi Anda yang mencari kendaraan murah untuk menjaga dompet Anda agar tidak berlubang terlalu dalam.</p>
 
               </div><!-- End Tab 1 Content -->
 
               <div class="tab-pane fade show" id="tab2">
 
-                <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p>
+                <p class="fst-italic">Pelayanan yang baik adalah layanan yang selalu bersih, teratur, indah, nan aman. Semua itu kami miliki dan hanya untuk Anda pelanggan kami semata.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
+                  <h4>Seluruh kendaraan dan layanan kami telah terlisensi secara legal dengan kualitas internasional</h4>
                 </div>
-                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+                <p>Berkendara tanpa takut untuk ditilang karena surat tidak lengkap. Karena kami juga menyediakan STNK dalam kendaraan yang membutuhkan STNK.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Incidunt non veritatis illum ea ut nisi</h4>
+                  <h4>Demi kenyamanan dan keamanan Anda, kami juga menerapkan Social Distancing</h4>
                 </div>
-                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+                <p>Kami juga selalu menerapkan protokol kesehatan dan selalu waspada terhadap penyebaran pandemi. Sehingga Anda dapat berkendara tanpa khawatir akan kesehatan dan kebersihan kendaraan kami.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
+                  <h4>Setiap kendaraan akan disediakan dengan kondisi bersih dan terawat.</h4>
                 </div>
-                <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
+                <p>Terkadang banyak pelanggan yang mengkhawatirkan tentang tingkat kebersihan dan keterawatan kendaraan pada layanan penyewaan kendaraan. Maka dari itu Anda tidak perlu khawatir. Karena sebelum kendaraan sampai di tangan Anda, kami melakukan inspeksi dan pembersihan secara menyeluruh.</p>
 
-              </div><!-- End Tab 2 Content -->
+              </div>
+              <!-- End Tab 2 Content -->
 
               <div class="tab-pane fade show" id="tab3">
 
-                <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p>
+                <p class="fst-italic">Demi pelanggan kami yang sangat berharga. Kami juga menyediakan layanan yang juga memprioritaskan fleksibilitas dalam pelaksanaannya.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
+                  <h4>Terjadi kesalahan saat pemesanan? Dapat di batalkan kapanpun dan di mana pun</h4>
                 </div>
-                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+                <p>Pembatalan pemesanan kendaraan kami dapat dilakukan di mana saja. Jadi, jangan khawatir untuk memesan terlebih dahulu sebelum di pesan orang lain.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Incidunt non veritatis illum ea ut nisi</h4>
+                  <h4>Perpanjang layanan kami sewaktu-waktu</h4>
                 </div>
-                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+                <p>Hanya dengan melalui aplikasi kami, Anda dapat memperpanjangnya dengan mudah. Atau jika Anda tidak bisa mengakses aplikasi kami, sistem kami akan melanjutkan layanan kami setelah waktu penyewaan Anda telah habis</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
-                  <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
+                  <h4>Buang sopir ketika tidak dibutuhkan lagi. Atau panggil sopir ketika dibutuhkan lagi</h4>
                 </div>
-                <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim quaerat. Vero error error voluptatem eum.</p>
+                <p>Sopir dapat diadakan atau ditiadakan sesuai dengan kebutuhan Anda. Bahkan di tengah antah beranta, sopir dapat dikeluarkan jika Anda benar-benar tidak membutuhkannya</p>
 
-              </div><!-- End Tab 3 Content -->
+              </div>
+              <!-- End Tab 3 Content -->
 
             </div>
 
@@ -313,272 +288,13 @@
       </div>
     </section><!-- End Clients Section -->
 
-    <!-- ======= Call To Action Section ======= -->
-    <section id="cta" class="cta">
-      <div class="container" data-aos="zoom-out">
-
-        <div class="row g-5">
-
-          <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
-            <h3>Alias sunt quas <em>Cupiditate</em> oluptas hic minima</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <a class="cta-btn align-self-start" href="#">Call To Action</a>
-          </div>
-
-          <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
-            <div class="img">
-              <img src="assets/img/hero/cta.jpg" alt="" class="img-fluid">
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Call To Action Section -->
-
-    <!-- ======= On Focus Section ======= -->
-    <section id="onfocus" class="onfocus">
-      <div class="container-fluid p-0" data-aos="fade-up">
-
-        <div class="row g-0">
-          <div class="col-lg-6 video-play position-relative">
-            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-          </div>
-          <div class="col-lg-6">
-            <div class="content d-flex flex-column justify-content-center h-100">
-              <h3>Voluptatem dignissimos provident quasi corporis</h3>
-              <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
-              </p>
-              <ul>
-                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-              </ul>
-              <a href="#" class="read-more align-self-start"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End On Focus Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <div class="container" data-aos="fade-up">
-
-        <ul class="nav nav-tabs row gy-4 d-flex">
-
-          <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-              <i class="bi bi-binoculars color-cyan"></i>
-              <h4>Modinest</h4>
-            </a>
-          </li><!-- End Tab 1 Nav -->
-
-          <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-              <i class="bi bi-box-seam color-indigo"></i>
-              <h4>Undaesenti</h4>
-            </a>
-          </li><!-- End Tab 2 Nav -->
-
-          <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-              <i class="bi bi-brightness-high color-teal"></i>
-              <h4>Pariatur</h4>
-            </a>
-          </li><!-- End Tab 3 Nav -->
-
-          <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
-              <i class="bi bi-command color-red"></i>
-              <h4>Nostrum</h4>
-            </a>
-          </li><!-- End Tab 4 Nav -->
-
-          <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
-              <i class="bi bi-easel color-blue"></i>
-              <h4>Adipiscing</h4>
-            </a>
-          </li><!-- End Tab 5 Nav -->
-
-          <li class="nav-item col-6 col-md-4 col-lg-2">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-6">
-              <i class="bi bi-map color-orange"></i>
-              <h4>Reprehit</h4>
-            </a>
-          </li><!-- End Tab 6 Nav -->
-
-        </ul>
-
-        <div class="tab-content">
-
-          <div class="tab-pane active show" id="tab-1">
-            <div class="row gy-4">
-              <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-                <h3>Modinest</h3>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-              </div>
-              <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
-                <img src="assets/img/hero/features-1.svg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div><!-- End Tab Content 1 -->
-
-          <div class="tab-pane" id="tab-2">
-            <div class="row gy-4">
-              <div class="col-lg-8 order-2 order-lg-1">
-                <h3>Undaesenti</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-4 order-1 order-lg-2 text-center">
-                <img src="assets/img/hero/features-2.svg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div><!-- End Tab Content 2 -->
-
-          <div class="tab-pane" id="tab-3">
-            <div class="row gy-4">
-              <div class="col-lg-8 order-2 order-lg-1">
-                <h3>Pariatur</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
-                </ul>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-              </div>
-              <div class="col-lg-4 order-1 order-lg-2 text-center">
-                <img src="assets/img/hero/features-3.svg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div><!-- End Tab Content 3 -->
-
-          <div class="tab-pane" id="tab-4">
-            <div class="row gy-4">
-              <div class="col-lg-8 order-2 order-lg-1">
-                <h3>Nostrum</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-4 order-1 order-lg-2 text-center">
-                <img src="assets/img/hero/features-4.svg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div><!-- End Tab Content 4 -->
-
-          <div class="tab-pane" id="tab-5">
-            <div class="row gy-4">
-              <div class="col-lg-8 order-2 order-lg-1">
-                <h3>Adipiscing</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-4 order-1 order-lg-2 text-center">
-                <img src="assets/img/hero/features-5.svg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div><!-- End Tab Content 5 -->
-
-          <div class="tab-pane" id="tab-6">
-            <div class="row gy-4">
-              <div class="col-lg-8 order-2 order-lg-1">
-                <h3>Reprehit</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-4 order-1 order-lg-2 text-center">
-                <img src="assets/img/hero/features-6.svg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div><!-- End Tab Content 6 -->
-
-        </div>
-
-      </div>
-    </section><!-- End Features Section -->
-
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
           <h2>Our Services</h2>
-          <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
+          <p>Kami menyediakan banyak layanan yang berkualitas premium demi meningkatkan kenyamanan dan pengalaman para customer kami.</p>
         </div>
 
         <div class="row gy-5">
@@ -593,9 +309,9 @@
                   <i class="bi bi-activity"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Nesciunt Mete</h3>
+                  <h3>Emergency</h3>
                 </a>
-                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis.</p>
+                <p>Karyawan kami akan langsung mengerahkan segala tenaga yang ada, apabila terjadi kecelakaan yang tidak diinginkan.</p>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -610,9 +326,9 @@
                   <i class="bi bi-broadcast"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Eosle Commodi</h3>
+                  <h3>Connectivity</h3>
                 </a>
-                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+                <p>Kami menyediakan alat telekomunikasi darurat pada setiap kendaraan kami. Sehingga di mana pun Anda berada, kami masih tetap bisa menjangkau Anda.</p>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -627,9 +343,9 @@
                   <i class="bi bi-easel"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Ledo Markt</h3>
+                  <h3>Micro Detail</h3>
                 </a>
-                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+                <p>Memberikan informasi kendaraan dengan tingkat kedetailan tertinggi. Serta memberikan pengarahan dengan sejelas mungkin apabila terjadi hal yang tidak diinginkan.</p>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -644,9 +360,9 @@
                   <i class="bi bi-bounding-box-circles"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Asperiores Commodit</h3>
+                  <h3>Extend Anytime</h3>
                 </a>
-                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+                <p>Ingin menambah waktu penggunaan layanan jasa rental dengan mudah. Tanpa harus mengulangi langkah meminjam dari awal.</p>
                 <a href="#" class="stretched-link"></a>
               </div>
             </div>
@@ -662,9 +378,9 @@
                   <i class="bi bi-calendar4-week"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Velit Doloremque</h3>
+                  <h3>Schedule</h3>
                 </a>
-                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                <p>Pilih tanggal dan waktu sesuka hati Anda. Kendaraan akan pasti tersedia di waktu yang telah Anda pilih.</p>
                 <a href="#" class="stretched-link"></a>
               </div>
             </div>
@@ -680,9 +396,9 @@
                   <i class="bi bi-chat-square-text"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Dolori Architecto</h3>
+                  <h3>Customer Service</h3>
                 </a>
-                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+                <p>Adanya layanan komunikasi apabila terjadi kendala atau situasi di luar kendali. Menyediakan juga pertanyaan-pertanyaan yang menyangkut layanan kami.</p>
                 <a href="#" class="stretched-link"></a>
               </div>
             </div>
@@ -710,7 +426,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  Ah sayang sekali kendaraan nya tidak boleh di beli. Soalnya mobilnya terawat dengan baik sih.
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -726,7 +442,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  Woke dah pokoknya
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -742,7 +458,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  Mendengar dari kata teman-teman, bahwa layanan rental paling baik adalah roamRent. Makanya langsung kucoba. Eh ternyata memang benar kata teman-teman. Pengalaman luar biasa
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -758,7 +474,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  Tinggal cusss
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -774,6 +490,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
+                  Merupakan pengalaman yang menakjubkan. Mulai dari pemesanan, kendaraan tiba, sampai selesai, semuanya keren. Sudah tidak bisa diungkapkan pakai kata-kata.
                   Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
@@ -788,7 +505,7 @@
     </section><!-- End Testimonials Section -->
 
     <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
+    <!--<section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -819,7 +536,7 @@
               </div>
 
             </div>
-          </div><!-- End Pricing Item -->
+          </div>&lt;!&ndash; End Pricing Item &ndash;&gt;
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="400">
             <div class="pricing-item featured">
@@ -844,7 +561,7 @@
               </div>
 
             </div>
-          </div><!-- End Pricing Item -->
+          </div>&lt;!&ndash; End Pricing Item &ndash;&gt;
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600">
             <div class="pricing-item">
@@ -867,12 +584,13 @@
               </div>
 
             </div>
-          </div><!-- End Pricing Item -->
+          </div>&lt;!&ndash; End Pricing Item &ndash;&gt;
 
         </div>
 
       </div>
-    </section><!-- End Pricing Section -->
+    </section>-->
+    <!-- End Pricing Section -->
 
     <!-- ======= F.A.Q Section ======= -->
     <section id="faq" class="faq">
@@ -885,7 +603,7 @@
             <div class="content px-xl-5">
               <h3>Frequently Asked <strong>Questions</strong></h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                Kami sangat menerima segala macam bentuk pertanyaan atau saran. Karena semua itu akan membantu kami dalam meningkatkan layanan kami. Sehingga jika Anda memiliki kebingunan akan layanan kami, berikut pertanyaan yang sering ditanyakan.
               </p>
             </div>
 
@@ -895,12 +613,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Non consectetur a erat nam at lectus urna duis?
+                    Apa yang perlu disiapkan untuk menggunakan layanan rental kendaraan?
                   </button>
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                    Ketika Anda sudah memilih kendaraan yang akan Anda sewa, siapkan uangnya terlebih dahulu. Lalu sebelum menggunakan kendaraan, Anda harus sudah siap <b>SIM</b>, <b>KTP</b> atau <b>KTM</b>
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -909,12 +627,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                    Bisakah saya booking layanan sewa kendaraan untuk teman, keluarga, atau kerabat saya?
                   </button>
                 </h3>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                    Tentu saja bisa. Cukup berikan kartu identitas dan SIM teman Anda untuk menggunakan layanan kami. Dan tentu saja Anda yang bayar.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -923,17 +641,17 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                    Apakah ada tips untuk memilih kendaraan yang tepat?
                   </button>
                 </h3>
                 <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                    Pertama-tama pikirkan terlebih dahulu ke mana tujuan dan perjalanan Anda. Sebagai contoh, mobil Jeep akan cocok untuk mendaki gunung. Namun, jika jalannya sempit maka sebaliknya motor trail adalah pilihan yang cocok. Pastikan juga Anda memilih kendaraan yang bisa Anda kendarai.
                   </div>
                 </div>
               </div><!-- # Faq item-->
 
-              <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+              <!--<div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                     <i class="bi bi-question-circle question-icon"></i>
@@ -946,18 +664,21 @@
                     Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
                   </div>
                 </div>
-              </div><!-- # Faq item-->
+              </div>-->
+              <!-- # Faq item-->
 
               <div class="accordion-item" data-aos="fade-up" data-aos-delay="600">
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                    Tolong saya tersesat dan sedang mengalami kecelakaan, apa yang perlu saya lakukan?
                   </button>
                 </h3>
                 <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                    Tenang, pada setiap kendaraan sudah tersedia alat komunikasi darurat. Dan untuk kendaraan mobil kami sudah sediakan panduan survival guide beserta kotak p3k untuk pertolongan pertama.
+                    Sedangkan sepeda motor juga sudah tersedia guideline survival di bagasinya.
+                    untuk sepeda pancal, sudah disertai alat pelacak tersembunyi. Sehingga ketika ada situasi darurat, Anda juga bisa menggunakan kekuatan batin Anda sendiri.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -978,8 +699,8 @@
       <div class="container">
 
         <div class="section-header">
-          <h2>Portfolio</h2>
-          <p>Non hic nulla eum consequatur maxime ut vero memo vero totam officiis pariatur eos dolorum sed fug dolorem est possimus esse quae repudiandae. Dolorem id enim officiis sunt deserunt esse soluta consequatur quaerat</p>
+          <h2>Vehicles</h2>
+          <p>Berikut adalah beberapa sebagian kendaraan berkualitas kami yang tersedia. Semua memiliki standard yang terjamin internasional</p>
         </div>
 
       </div>
@@ -990,121 +711,28 @@
 
           <ul class="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Product</li>
-            <li data-filter=".filter-branding">Branding</li>
-            <li data-filter=".filter-books">Books</li>
+            <li data-filter=".filter-car">Mobil</li>
+            <li data-filter=".filter-motorcycle">Motor</li>
+            <li data-filter=".filter-bicycle">Sepeda Pancal</li>
+            <!--<li data-filter=".filter-books">Books</li>-->
           </ul><!-- End Portfolio Filters -->
 
+
+
+
           <div class="row g-0 portfolio-container">
+            <?php while ($row = $result->fetch_assoc()) { ?>
 
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/hero/portfolio/app-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <a href="assets/img/hero/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-<?= $row['category'] ?>">
+                <img src="<?= $row['img_url'] ?>" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4><?= $row['name'] ?></h4>
+                  <a href="assets/img/hero/portfolio/2021-skoda-octavia-rs.jpg" title="App 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="item_detail.php?id=<?= $row['id'] ?>" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/hero/portfolio/product-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <a href="assets/img/hero/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/hero/portfolio/branding-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 1</h4>
-                <a href="assets/img/hero/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/hero/portfolio/books-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 1</h4>
-                <a href="assets/img/hero/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/hero/portfolio/app-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <a href="assets/img/hero/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/hero/portfolio/product-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 2</h4>
-                <a href="assets/img/hero/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/hero/portfolio/branding-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 2</h4>
-                <a href="assets/img/hero/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/hero/portfolio/books-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 2</h4>
-                <a href="assets/img/hero/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/hero/portfolio/app-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <a href="assets/img/hero/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/hero/portfolio/product-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 3</h4>
-                <a href="assets/img/hero/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/hero/portfolio/branding-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 3</h4>
-                <a href="assets/img/hero/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/hero/portfolio/books-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 3</h4>
-                <a href="assets/img/hero/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+            <?php } ?>
 
           </div><!-- End Portfolio Container -->
 
@@ -1114,7 +742,7 @@
     </section><!-- End Portfolio Section -->
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
+    <!--<section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -1140,7 +768,7 @@
                 <span>Chief Executive Officer</span>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>&lt;!&ndash; End Team Member &ndash;&gt;
 
           <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
             <div class="team-member">
@@ -1158,7 +786,7 @@
                 <span>Product Manager</span>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>&lt;!&ndash; End Team Member &ndash;&gt;
 
           <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="600">
             <div class="team-member">
@@ -1176,12 +804,13 @@
                 <span>CTO</span>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>&lt;!&ndash; End Team Member &ndash;&gt;
 
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section>-->
+    <!-- End Team Section -->
 
     <!-- ======= Recent Blog Posts Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
@@ -1189,50 +818,29 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Blog</h2>
-          <p>Recent posts form our Blog</p>
+          <h2>Our Latest News</h2>
+          <p>Cerita dan peningkatan kualitas service terbaru kami.</p>
         </div>
 
         <div class="row">
 
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/hero/blog/blog-1.jpg" class="img-fluid" alt=""></div>
-              <div class="meta">
-                <span class="post-date">Tue, December 12</span>
-                <span class="post-author"> / Julia Parker</span>
+          <?php while ($row = $result_article->fetch_assoc()) {
+          ?>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="post-box">
+                <div class="post-img"><img src="<?= $row['img_url'] ?>" class="img-fluid" alt=""></div>
+                <div class="meta">
+                  <!-- <span class="post-date">Tue, December 12</span> -->
+                  <span class="post-author">
+                    <!-- / --> <?= $row['author'] ?>
+                  </span>
+                </div>
+                <h3 class="post-title"><?= $row['title'] ?></h3>
+                <!-- <p>Dengan pergantian CEO baru, telah dibentuknya peraturan - peraturan baru. Telah di lihat bahwa peraturan tersebut memberikan dampak besar ke...</p> -->
+                <a href="blog-details.php?id=<?= $row['id'] ?>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
               </div>
-              <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
-              <p>Illum voluptas ab enim placeat. Adipisci enim velit nulla. Vel omnis laudantium. Asperiores eum ipsa est officiis. Modi cupiditate exercitationem qui magni est...</p>
-              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
             </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/hero/blog/blog-2.jpg" class="img-fluid" alt=""></div>
-              <div class="meta">
-                <span class="post-date">Fri, September 05</span>
-                <span class="post-author"> / Mario Douglas</span>
-              </div>
-              <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-              <p>Voluptatem nesciunt omnis libero autem tempora enim ut ipsam id. Odit quia ab eum assumenda. Quisquam omnis aliquid necessitatibus tempora consectetur doloribus...</p>
-              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
-            <div class="post-box">
-              <div class="post-img"><img src="assets/img/hero/blog/blog-3.jpg" class="img-fluid" alt=""></div>
-              <div class="meta">
-                <span class="post-date">Tue, July 27</span>
-                <span class="post-author"> / Lisa Hunter</span>
-              </div>
-              <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-              <p>Quia nam eaque omnis explicabo similique eum quaerat similique laboriosam. Quis omnis repellat sed quae consectetur magnam veritatis dicta nihil...</p>
-              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+          <?php } ?>
 
         </div>
 
@@ -1253,7 +861,8 @@
 
       <!--<div class="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-      </div>--><!-- End Google Maps -->
+      </div>-->
+      <!-- End Google Maps -->
 
       <div class="container">
 
@@ -1268,7 +877,7 @@
               <div class="info-item d-flex">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
-                  <h4>Lokasi:</h4>
+                  <h4>Location:</h4>
                   <p>Villa Puncak Tidar Blok N no. 1, Doro, Karangwidoro, Kec. Dau, Kabupaten Malang, Jawa Timur 65151</p>
                 </div>
               </div><!-- End Info Item -->
@@ -1284,7 +893,7 @@
               <div class="info-item d-flex">
                 <i class="bi bi-phone flex-shrink-0"></i>
                 <div>
-                  <h4>Call:</h4>
+                  <h4>Telepon:</h4>
                   <p>(0341) 550171</p>
                 </div>
               </div><!-- End Info Item -->

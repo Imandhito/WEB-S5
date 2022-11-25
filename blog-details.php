@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - HeroBiz Bootstrap Template</title>
+  <title>Blog Details - HeroBiz Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -43,6 +43,13 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <?php include_once 'connect.php'; 
+  $temp_id = $_GET['id'];
+  $sql = "SELECT * FROM article WHERE id = ".$temp_id;
+  $result = $conn->query($sql);
+  $value = $result->fetch_object();
+  ?>
 </head>
 
 <body>
@@ -54,27 +61,28 @@
       <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>HeroBiz<span>.</span></h1>
+        <h1>RoamRent<span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
+          <li>
+            <a href="#"><span>Home</span></a>
+            <!--<ul>
               <li><a href="index.html">Home 1 - index.html</a></li>
               <li><a href="index-2.html">Home 2 - index-2.html</a></li>
-              <li><a href="index-3.html">Home 3 - index-3.html</a></li>
+              <li><a href="index-3.html" class="active">Home 3 - index-3.html</a></li>
               <li><a href="index-4.html">Home 4 - index-4.html</a></li>
-            </ul>
+            </ul>-->
           </li>
 
           <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.html#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li><a class="nav-link scrollto" href="index.html#portfolio">Vehicles</a></li>
+          <!--<li><a class="nav-link scrollto" href="index.html#team">Team</a></li>-->
+          <li><a href="blog.html">News</a></li>
+          <!--<li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li>
                 <a href="#">Column 1 link 1</a>
@@ -97,8 +105,8 @@
                 <a href="#">Column 4 link 3</a>
               </li>
             </ul>
-          </li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          </li>-->
+          <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -114,7 +122,7 @@
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li>
             </ul>
-          </li>
+          </li>-->
           <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
@@ -132,31 +140,86 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
+          <h2>Our News</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Inner Page</li>
+            <li><a href="blog.html">News</a></li>
+            <li>Read News</li>
           </ol>
         </div>
 
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
-    <section class="inner-page">
+    <!-- ======= Blog Details Section ======= -->
+    <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-header">
-          <h2>Inner Page</h2>
-          <p>Example inner page template</p>
+        <div class="row g-5">
+
+          <div class="col-lg-12">
+
+            <article class="blog-details">
+
+              <div class="post-img">
+                <img src="<?= $value->img_url ?>" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="title"><?= $value->title ?></h2>
+
+              <div class="meta-top">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">Jan 1, 2022</time></a></li>
+                  <!-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li> -->
+                </ul>
+              </div><!-- End meta top -->
+
+              <div class="content">
+                <p>
+                  <?= $value->text ?>
+                </p>
+
+              </div><!-- End post content -->
+
+              <div class="meta-bottom">
+                <i class="bi bi-folder"></i>
+                <ul class="cats">
+                  <li><a href="#">Business</a></li>
+                </ul>
+
+                <i class="bi bi-tags"></i>
+                <ul class="tags">
+                  <li><a href="#">Creative</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Marketing</a></li>
+                </ul>
+              </div><!-- End meta bottom -->
+
+            </article><!-- End blog post -->
+
+            <div class="post-author d-flex align-items-center">
+              <img src="assets/img/hero/blog/blog-author.jpg" class="rounded-circle flex-shrink-0" alt="">
+              <div>
+                <h4><?= $value->author ?></h4>
+                <div class="social-links">
+                  <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
+                  <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
+                </div>
+                <p>
+                  Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+                </p>
+              </div>
+            </div><!-- End post author -->
+
+          </div>
+
+
         </div>
 
-        <p>
-          You can duplicate this page and create any number of pages you like!
-        </p>
-
       </div>
-    </section><!-- End Inner Page -->
+    </section><!-- End Blog Details Section -->
 
   </main><!-- End #main -->
 
