@@ -10,7 +10,8 @@ $sql = "INSERT INTO user(name, email, password, phone) VALUES ('".$name."', '".$
 
 
 if ($conn->query($sql)) {
-    header('location:pages-register.html');
+    header('location:pages-login.html');
 }else{
     echo "Error :".$conn->error;
 }
+?>
