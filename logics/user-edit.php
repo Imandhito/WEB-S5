@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>Edit</title>
+    <head>
+        <title>Edit</title>
 </head>
-
 <body>
+    
+<?php
 
-    <?php
-
-    /* if (!) {
+/* if (!) {
     echo("Error description: " . $mysqli -> error);
   }
  */
-    include_once "../connect.php";
+include_once "../connect.php";
 
     $id = $_POST['id_user'];
     $name = $_POST['name'];
@@ -24,15 +22,24 @@
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     echo $id;
-    $sql = "UPDATE user SET email='" . $email . "', name='" . $name . "',job='" . $job . "',about='" . $about . "',country='" . $country . "',address='" . $address . "',phone='" . $phone . "'  WHERE id =" . $id;
-
+    $sql = "UPDATE user SET email='".$email."', name='".$name."',job='".$job."',about='".$about."',country='".$country."',address='".$address."',phone='".$phone."'  WHERE id =".$id;
+    
     $conn->query($sql);
-    header("location: ../users-profile.php?id=" . $id);
+    header("location: ../users-profile.php?id=".$id);
 
+/* if (isset($_POST["submit"]) ) {
 
-    ?>
+    
+}
+else {
+    //echo "<script>window.location.href='signup.php';</script>";
+    echo "Something went wrong";
+} */
+
+//`profile_picture`='[value-9]',
+
+?>
 
 
 </body>
-
 </html>
