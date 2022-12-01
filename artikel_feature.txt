@@ -1,0 +1,7 @@
+id primary key
+title
+text
+img_url
+author(user_id(admin))
+category (foreign key)
+
