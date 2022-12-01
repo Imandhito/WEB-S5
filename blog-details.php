@@ -44,9 +44,9 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  <?php include_once 'connect.php'; 
+  <?php include_once 'logics/connect.php';
   $temp_id = $_GET['id'];
-  $sql = "SELECT * FROM article WHERE id = ".$temp_id;
+  $sql = "SELECT * FROM article WHERE id = " . $temp_id;
   $result = $conn->query($sql);
   $value = $result->fetch_object();
   ?>
