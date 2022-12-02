@@ -42,14 +42,19 @@
   <?php include 'logics/connect.php'; 
   $sql = 'SELECT * FROM user';
   $result = $conn->query($sql);
+
   session_start();
   if (!isset($_SESSION['user_id'])) {
     header("location:login.php");
   }
 
-  $sql = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-  $result = $conn->query($sql);
-  $data = $result->fetch_object();
+  $sqli = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
+  $results = $conn->query($sqli);
+  $data = $results->fetch_object();
+
+  if (strcmp($data->role, "user") == 0) {
+    header("location:home.php");
+  } 
   ?>
    
   
@@ -223,17 +228,18 @@
           </ul><!-- End Messages Dropdown Items -->
 
         </li><!-- End Messages Nav -->
+        
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Mr.Bahaha</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?=$data -> name?></span>
           </a><!-- End Profile Iamge Icon -->
-
+          
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6><?=$data -> name?></h6>
+          <li class="dropdown-header">
+              <h6><?= $data->name ?></h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -241,7 +247,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -271,7 +277,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="logics/logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -349,7 +355,10 @@
     <div class="pagetitle">
       <h1>Daftar pengguna</h1>
       <nav>
-        <p>Berbagai pengguna pilihan dari kami</p>
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+          
+        </ol>
       </nav>
     </div><!-- End Page Title -->
     <section class="section">
