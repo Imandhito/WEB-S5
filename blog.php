@@ -49,6 +49,9 @@
   $sql_article = "SELECT * FROM article";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
+  $sql_user = 'SELECT * FROM user';
+  $result_user = $conn->query($sql_user);
+  $data = $result_user->fetch_object();
   ?>
 
 </head>
@@ -188,6 +191,11 @@
                     <!-- <p>Dengan pergantian CEO baru, telah dibentuknya peraturan - peraturan baru. Telah di lihat bahwa peraturan tersebut memberikan dampak besar ke...</p> -->
                     <a href="blog-details.php?id=<?= $row['id'] ?>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                     </div>
+                    <?php
+                      if (strcmp($data->role, "admin") == 0) {
+                        echo('<a href="users.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>');
+                      }
+                      ?>
                 </div>
                 <?php } ?>
 

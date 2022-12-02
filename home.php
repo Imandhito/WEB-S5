@@ -18,9 +18,12 @@
     header("location:login.php");
   }
 
-  $sql = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-  $result = $conn->query($sql);
-  $data = $result->fetch_object();
+  include 'logics/connect.php'; 
+  $sql_user = 'SELECT * FROM user';
+  $result_user = $conn->query($sql_user);
+  $data = $result_user->fetch_object();
+  $sql_article = 'SELECT * FROM article';
+  $result_article = $conn->query($sql_article);
   ?>
 
 </head>
@@ -356,7 +359,7 @@
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-xxl-4 col-xl-6">
 
               <div class="card info-card customers-card">
 
@@ -374,27 +377,76 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+                  <h5 class="card-title">User Account Count</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <?php echo('<h6>'); 
-                      echo ('1244');
-                      
+                      <?php echo('<h6>');
+                      $count_user=1;
+                      while($row_user = $result_user->fetch_assoc()) { 
+                        $count_user=$count_user+1;
+                      }
+                      echo ($count_user.' User Account');
                       echo('<h6>') ?>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
                     </div>
                   </div>
-
+                  <a href="users.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>
                 </div>
               </div>
 
             </div><!-- End Customers Card -->
 
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-6">
+
+              <div class="card info-card customers-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Article Count</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <?php echo('<h6>');
+                      $count2=0;
+                      while($row_article = $result_article->fetch_assoc()) { 
+                        $count2=$count2+1;
+                      }
+                      echo ($count2.' Article Published');
+                      echo('<h6>') ?>
+                    </div>
+                  </div>
+                  <a href="blog.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>
+                </div>
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->            
+
+
+
+
+
+
+            
             <!-- Reports -->
             <div class="col-12">
               <div class="card">
