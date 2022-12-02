@@ -18,6 +18,6 @@ if (isset($_POST['email'])) {
         $_SESSION["email"] = $email;
         header("Location: ../home.php");
     } else {
-        echo "WRONG PASSWORD OR USERNAME <br> <a href='pages-login.html'><button> BACK </button></a>" . $conn->error;
+        echo "WRONG PASSWORD OR USERNAME <br> <a href=' ../login.php'><button> BACK </button></a>" . $conn->error;
     }
 }
