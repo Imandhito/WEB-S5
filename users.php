@@ -30,6 +30,7 @@
   <link href="assets/css/nice-style.css" rel="stylesheet">
 
 
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- =======================================================
@@ -41,7 +42,17 @@
   <?php include 'logics/connect.php'; 
   $sql = 'SELECT * FROM user';
   $result = $conn->query($sql);
+  session_start();
+  if (!isset($_SESSION['user_id'])) {
+    header("location:login.php");
+  }
+
+  $sql = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
+  $result = $conn->query($sql);
+  $data = $result->fetch_object();
   ?>
+   
+  
 </head>
 
 <body>
@@ -50,7 +61,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.php" class="logo d-flex align-items-center">
+      <a href="home.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">RoamRent.</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -222,7 +233,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Mr. Bahaha</h6>
+              <h6><?=$data -> name?></h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -361,6 +372,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                
                 <?php while($row = $result->fetch_assoc()) { ?>
                   <tr>
                     <td>
@@ -377,7 +389,7 @@
                         <?= $row["phone"] ?>
                     </td>
                     <td>
-                        <a href="edit-user-form.php"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
+                    <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
                         <button
                            onclick="deleteConfirm(<?= $row['id'] ?>)"
                            class="btn btn-outline-danger alert-delete-confirm">Delete</button>
@@ -427,7 +439,9 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  
+  
+  
   <script>
     function deleteConfirm(id) {
         Swal.fire({
@@ -437,33 +451,39 @@
             showCancelButton: true,
             confirmButtonText: 'Delete'
         }).then((result) => {
-            if (result.value) {
-                $.post({
+            if (result.isConfirmed) {
+              //Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+                $.ajax({
                     url: 'delete.php',
                     type: 'POST',
                     data: {id:id},
                     dataType: 'php',
                     success: function (response) {
-                        swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
-                            window.location = "users.php";
-                        });
+                      /* ini error delete */
+                        Swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
                     },
                     error: function () {
-                        swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
+                      /* ini success delete */
+                        Swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
+                          window.location = "users.php";
+                        });
+                          
                     }
                 })
-                /*.done(function(response){
-                    swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
-                        window.location = "index.php";
-                    });
-                })
-                .fail(function(){
-                    swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
-                });*/
+                // .done(function(response){
+                //     swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
+                //         window.location = "index.php";
+                //     });
+                // })
+                // .fail(function(){
+                //     swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
+                // });
+                
+                
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swal.fire('Canceled', 'Your data is safe', 'info');
             }
-        })
+    });
     }
 </script>
 </body>

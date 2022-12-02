@@ -37,7 +37,7 @@
   ======================================================== -->
   <?php include 'logics/connect.php';
   session_start();
-  $temp_id = $_SESSION['user_id'];
+  $temp_id = $_GET["id"];
   $sql = "SELECT * FROM user WHERE id = " . $temp_id;
   $result = $conn->query($sql);
   $value = $result->fetch_object();
@@ -52,7 +52,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <a href="users.php"><span class="d-none d-lg-block">NiceAdmin</span></a>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -324,7 +324,8 @@
           </li>
           <li>
             <a href="components-carousel.html">
-              <i class="bi bi-circle"></i><span>Carousel</span>
+              <i class="bi bi-c
+              ircle"></i><span>Carousel</span>
             </a>
           </li>
           <li>
@@ -534,6 +535,7 @@
 
               <!-- Vertical Form -->
             <form method="post" action="logics/user-edit-form.php">
+
                 <form class="row g-3">
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
@@ -555,22 +557,10 @@
                         <input name="email" type="email" class="form-control" id="Email" value="<?= $value->email ?>">
                       </div>
                     </div>
-                    <div class="col-12">
-                    <label for="inputPassword" class="form-label">Password Lama</label>
-                    <input type="password" name="current_password" class="form-control" id="inputPassword">
-                    </div>
-                    <div class="col-12">
-                    <label for="inputPassword" class="form-label">Password Baru</label>
-                    <input type="password" name="new_password" class="form-control" id="inputPassword">
-                    </div>
-                    <div class="col-12">
-                    <label for="inputPassword" class="form-label">Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" id="inputPassword">
-                    </div>
                     <div class="text-center">
                     <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
-                </form>`
+                </form>
             </form><!-- Vertical Form -->
 
             </div>
