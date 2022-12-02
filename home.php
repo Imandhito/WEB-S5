@@ -381,7 +381,10 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
+                      <?php echo('<h6>'); 
+                      echo ('1244');
+                      
+                      echo('<h6>') ?>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>

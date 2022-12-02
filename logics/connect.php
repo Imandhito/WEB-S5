@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "3121";
+$password = "";
 $dbname = "roam_rent";
 
 // Create connection

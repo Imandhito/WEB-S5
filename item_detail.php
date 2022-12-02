@@ -36,7 +36,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  <?php include_once 'connect.php'; 
+  <?php include_once 'logics/connect.php'; 
   $temp_id = $_GET['id'];
   $sql = "SELECT * FROM vehicle WHERE id = ".$temp_id;
   $result = $conn->query($sql);

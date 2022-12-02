@@ -38,7 +38,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <?php include 'connect.php'; 
+  <?php include 'logics/connect.php'; 
   $sql = 'SELECT * FROM user';
   $result = $conn->query($sql);
   ?>
