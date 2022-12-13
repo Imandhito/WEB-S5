@@ -279,8 +279,59 @@ if (!isset($_SESSION['user_id'])) {
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  <?php include('layout-sidebar.php'); ?>
-  <!-- End Sidebar-->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="home.php">
+          <i class="bi bi-grid"></i>
+          <span>Home</span>
+        </a>
+      </li><!-- End Home Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Vehicles</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="item_list.php">
+              <i class="bi bi-circle"></i><span>Car</span>
+            </a>
+          </li>
+          <li>
+            <a href="item_list.php">
+              <i class="bi bi-circle"></i><span>Motorcycle</span>
+            </a>
+          </li>
+          <li>
+            <a href="item_list.php">
+              <i class="bi bi-circle"></i><span>Bicycle</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Vehicles Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users.php">
+          <i class="bi bi-person"></i>
+          <span>Users</span>
+        </a>
+      </li><!-- End Users Nav -->
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog.php">
+          <i class="bi bi-grid"></i>
+          <span>News</span>
+        </a>
+      </li><!-- End News Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
