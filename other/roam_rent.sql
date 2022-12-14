@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2022 at 02:52 AM
+-- Generation Time: Dec 14, 2022 at 08:27 PM
 -- Server version: 10.9.4-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -89,7 +89,36 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `role`, `name`, `job`, `about`, `country`, `address`, `profile_picture`, `phone`) VALUES
 (4, 'admin@admin.com', '123', 'admin', 'Fikry C. Farenza', 'Sit', 'About us', 'Pluto', 'Saturn', NULL, '1234'),
-(6, 'user1@gmail.com', '1234', 'user', 'Maggie Fox', NULL, NULL, NULL, NULL, NULL, '1234');
+(6, 'user1@gmail.com', '1234', 'user', 'Maggie Fox', NULL, NULL, NULL, NULL, NULL, '1234'),
+(7, 'Tuyul@gmail.com', '1234', 'user', 'Tuyul', NULL, NULL, NULL, NULL, NULL, '0819292929'),
+(8, 'Tuyul2@gmail.com', '1234', 'user', 'Tuyul2', NULL, NULL, NULL, NULL, NULL, '1231241'),
+(9, 'Tuyul3@gmail.com', '1234', 'user', 'Tuyul3', NULL, NULL, NULL, NULL, NULL, '0123123'),
+(10, 'Tuyul4@gmail.com', '1234', 'user', 'Tuyul4', NULL, NULL, NULL, NULL, NULL, '012321941'),
+(11, 'tuyul8@gmail.com', '1234', 'user', 'tuyul8', NULL, NULL, NULL, NULL, NULL, '01231231212'),
+(12, 'tuyul5@gmail.com', '1234', 'user', 'tuyul5', NULL, NULL, NULL, NULL, NULL, '012312415'),
+(13, 'tuyul6@gmail.com', '1234', 'user', 'tuyul6', NULL, NULL, NULL, NULL, NULL, '0132412421'),
+(14, 'capek@gmail.com', '1234', 'user', 'capek ', NULL, NULL, NULL, NULL, NULL, '0812394123'),
+(15, 'cepmek@gmail.com', '1234', 'user', 'cepmek', NULL, NULL, NULL, NULL, NULL, '081239412323'),
+(16, 'minion@gmail.com', '1234', 'user', 'minion', NULL, NULL, NULL, NULL, NULL, '08123748123'),
+(17, 'minion2@gmail.com', '1234', 'user', 'minion2', NULL, NULL, NULL, NULL, NULL, '08123412341'),
+(18, 'minion3@gmail.com', '1234', 'user', 'minion3', NULL, NULL, NULL, NULL, NULL, '0849129312'),
+(19, 'minion4@gmail.com', '1234', 'user', 'minion4', NULL, NULL, NULL, NULL, NULL, '089312412'),
+(20, 'Ayong@gmail.com', '1234', 'user', 'Ayong', NULL, NULL, NULL, NULL, NULL, '084192312'),
+(21, 'Tuyul10@gmail.com', '1234', 'user', 'Tuyul10', NULL, NULL, NULL, NULL, NULL, '0831231'),
+(22, 'cimol@gmail.com', '1234', 'user', 'cimol', NULL, NULL, NULL, NULL, NULL, '087782932'),
+(23, 'cilok@gmail.com', '1234', 'user', 'cilok', NULL, NULL, NULL, NULL, NULL, '08312412'),
+(24, 'cilor@gmail.com', '1234', 'user', 'cilor', NULL, NULL, NULL, NULL, NULL, '0869696969'),
+(25, 'cibubur@gmail.com', '1234', 'user', 'cibubur', NULL, NULL, NULL, NULL, NULL, '083124124'),
+(26, 'Pinoy@gmail.com', '1234', 'user', 'Pinoy Pride', NULL, NULL, NULL, NULL, NULL, '081234123'),
+(27, 'Seblak@gmail.com', '1234', 'user', 'Seblak', NULL, NULL, NULL, NULL, NULL, '08756296969'),
+(28, 'Imandito@gmail.com', '1234', 'user', 'Immandito', NULL, NULL, NULL, NULL, NULL, '081324913'),
+(29, 'NasiPadang@gmail.com', '1234', 'user', 'NasiPadang', NULL, NULL, NULL, NULL, NULL, '0874123126'),
+(30, 'Rendang@gmail.com', '1234', 'user', 'RendangSapi', NULL, NULL, NULL, NULL, NULL, '0897581283'),
+(31, 'DaunSingkong@outlook.com', '1234', 'user', 'DaunSingkong', NULL, NULL, NULL, NULL, NULL, '08645312312'),
+(32, 'Tewel@gmail.com', '1234', 'user', 'JanganTewel', NULL, NULL, NULL, NULL, NULL, '0875823123'),
+(33, 'GulaiAyam@gmail.com', '1234', 'user', 'GulaiAyam', NULL, NULL, NULL, NULL, NULL, '0875621111'),
+(34, 'Nasi@gmail.com', '1234', 'user', 'NasiPutih', NULL, NULL, NULL, NULL, NULL, '0841231221'),
+(35, 'Sijo@gmail.com', '1234', 'user', 'SambalIjo', NULL, NULL, NULL, NULL, NULL, '082419231');
 
 -- --------------------------------------------------------
 
@@ -194,7 +223,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `vechile_category`
