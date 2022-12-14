@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <?php
-  include('layout-style.php');
+  include('layout-head-import-nice.php');
   include('logics/connect.php');
 
   session_start();
@@ -34,11 +34,11 @@
   <header id=" header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      
+
       <a href="home.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">RoamRent.</span>
       </a>
-     
+
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
@@ -628,7 +628,9 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <!-- ======= Script ======= -->
   <?php include('layout-script.php'); ?>
+  <!-- End Script -->
 
 </body>
 
