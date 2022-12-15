@@ -219,8 +219,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="logics/photo/<?=$value->profile_picture?>" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $value->name?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -263,7 +263,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+            <a class="dropdown-item d-flex align-items-center" href="logics/logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -356,9 +356,9 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="logics/photo/<?=$value->profile_picture?>" alt="Profile" class="rounded-circle">
               <h2><?= $value->name ?></h2>
-              <h3><?= isset($value->job) ? "Doesn't have a job" : $value->job ?></h3>
+              <h3><?= $value->job ?></h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -442,15 +442,14 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form method="POST" action="logics/user-edit.php">
+                  <form method="POST" action="logics/user-edit.php" enctype="multipart/form-data">
 
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
+                        <img src="logics/photo/<?=$value->profile_picture?>" alt="Profile">
                         <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <input name="my_image" type="file" class="form-control" id="my_image" >
                         </div>
                       </div>
                     </div>
@@ -459,7 +458,7 @@
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="id_user" type="hidden" value="<?= $temp_id ?>" />
-                        <input name="name" type="text" class="form-control" id="fullName" value="<?= $value->name ?>">
+                        <input name="name" type="text" class="form-control" id="fullName" value="<?= $value->name?>">
                       </div>
                     </div>
 
@@ -511,7 +510,8 @@
                         <input name="email" type="email" class="form-control" id="Email" value="<?= $value->email ?>">
                       </div>
                     </div>
-                    <!-- 
+
+<!--                     
                     <div class="row mb-3">
                       <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
                       <div class="col-md-8 col-lg-9">
@@ -538,7 +538,7 @@
                       <div class="col-md-8 col-lg-9">
                         <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
                       </div>
-                    </div> -->
+                    </div>  -->
 
                     <div class="text-center">
                       <input type="submit" class="btn btn-primary" value="Save Changes">

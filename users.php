@@ -29,7 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/nice-style.css" rel="stylesheet">
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -74,8 +74,8 @@
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        <input type="text" id="live_search" name="query" placeholder="Search" title="Enter search keyword">
+        
       </form>
     </div><!-- End Search Bar -->
 
@@ -233,14 +233,14 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="logics/photo/<?=$data->profile_picture?>" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2"><?= $data->name ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?= $data->name ?></h6>
-              <span>Web Designer</span>
+              <span><?=$data->job?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -451,6 +451,7 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
@@ -501,7 +502,28 @@
           swal.fire('Canceled', 'Your data is safe', 'info');
         }
       });
+
     }
+    $(document).ready(function(){
+        $("#live_search").keyup(function(){
+          var input = $(this).val();
+          
+          if(input != ""){
+            $.ajax({
+                url:"livesearch.php",
+                method:"POST",
+                data:{input:input},
+
+                sucess:function(data){
+                  $("#searchresult").html(data);
+                }
+            });
+          }else{
+            $("#searchresult").css("display","none");
+          }
+        });
+    });
+
   </script>
 </body>
 
