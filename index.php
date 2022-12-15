@@ -12,10 +12,12 @@
   <?php
   include_once 'logics/connect.php';
   include "layout-head-import-hero.php";
-  $sql = "SELECT * FROM vehicle";
+  $sql_vehicle_category = 'SELECT * FROM vehicle_category';
+  $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id LIMIT 20';
   $sql_article = "SELECT *, article.id as article_id FROM article INNER JOIN user ON article.user_id=user.id ORDER BY article.id DESC LIMIT 9";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
+  $result_vehicle_category = $conn->query($sql_vehicle_category);
   ?>
 </head>
 
@@ -545,11 +547,11 @@
 
           <ul class="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-1">Mobil</li>
-            <li data-filter=".filter-2">Motorcycle</li>
-            <li data-filter=".filter-3">Bicycle</li>
-            <!--<li data-filter=".filter-books">Books</li>-->
-          </ul><!-- End Portfolio Filters -->
+            <?php while ($row = $result_vehicle_category->fetch_assoc()) { ?>
+              <li data-filter=".filter-<?= $row['id'] ?>"><?= $row['name'] ?></li>
+            <?php } ?>
+          </ul>
+          <!-- End Portfolio Filters -->
 
 
 
@@ -557,7 +559,7 @@
           <div class="row g-0 portfolio-container">
             <?php while ($row = $result->fetch_assoc()) { ?>
 
-              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-<?= $row['category'] ?>">
+              <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-<?= $row['vehicle_category'] ?>">
                 <img src="<?= $row['img_url'] ?>" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4><?= $row['name'] ?></h4>
