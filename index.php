@@ -13,7 +13,7 @@
   include_once 'logics/connect.php';
   include "layout-head-import-hero.php";
   $sql = "SELECT * FROM vehicle";
-  $sql_article = "SELECT * FROM article";
+  $sql_article = "SELECT * FROM article INNER JOIN user ON article.user_id=user.id ORDER BY article.id DESC LIMIT 9";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
   ?>
@@ -666,7 +666,7 @@
                 <div class="meta">
                   <!-- <span class="post-date">Tue, December 12</span> -->
                   <span class="post-author">
-                    <!-- / --> <?= $row['author'] ?>
+                    <!-- / --> <?= $row['name'] ?>
                   </span>
                 </div>
                 <h3 class="post-title"><?= $row['title'] ?></h3>
