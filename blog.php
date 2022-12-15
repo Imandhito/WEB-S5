@@ -206,7 +206,7 @@
             <div class="blog-pagination">
               <ul class="justify-content-center">
               <?php
-                if (strcmp($data->role, "admin") != 0) {
+                if (strcmp($data->role, "admin") == 0) {
                 echo('<a href="add-blog-form.php"><button class="btn btn-outline-info alert-delete-confirm">Add Article</button></a>');
                 }
               ?>
