@@ -1,4 +1,6 @@
-<?php$name = $email = $hobby = $address = $gender = $password = "";
+<?php
+include_once 'connect.php';
+$name = $email = $hobby = $address = $gender = $password = "";
 
 $title = $_POST["Title"];
 $text = $_POST["Article Text"];

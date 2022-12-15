@@ -45,8 +45,9 @@
   ======================================================== -->
 
   <?php include_once 'logics/connect.php';
+  $temp_id = $_GET["article_category.id"];
   $sql = "SELECT * FROM vehicle";
-  $sql_article = "SELECT *,article.id as article_id ,user.name as author , article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id ORDER BY article.id DESC LIMIT 25 ";
+  $sql_article = "SELECT *,article.id as article_id ,user.name as author , article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id WHERE article.id = " . $temp_id . " ORDER BY article.id DESC LIMIT 25 ";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
   $sql_user = 'SELECT * FROM user';
@@ -62,7 +63,7 @@
   <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="index.php" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>HeroBiz<span>.</span></h1>
@@ -73,17 +74,17 @@
 
           <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="index.html">Home 1 - index.html</a></li>
+              <li><a href="index.php">Home 1 - index.php</a></li>
               <li><a href="index-2.html">Home 2 - index-2.html</a></li>
               <li><a href="index-3.html">Home 3 - index-3.html</a></li>
               <li><a href="index-4.html">Home 4 - index-4.html</a></li>
             </ul>
           </li>
 
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.html#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="index.php#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="index.php#team">Team</a></li>
           <li><a href="blog.html" class="active">Blog</a></li>
           <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
@@ -126,12 +127,12 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-      <a class="btn-getstarted scrollto" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted scrollto" href="index.php#about">Get Started</a>
 
     </div>
   </header><!-- End Header -->
@@ -145,7 +146,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Blog</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li>Blog</li>
           </ol>
         </div>
@@ -231,14 +232,13 @@
               </div><!-- End sidebar search formn-->
 
               <div class="sidebar-item categories">
-                <h3 class="sidebar-title">Categories</h3>
+                <h3 class="sidebar-title">TAG</h3>
                 <ul class="mt-3">
-                  <li><a href="#">General <span>(25)</span></a></li>
-                  <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                  <li><a href="#">Travel <span>(5)</span></a></li>
-                  <li><a href="#">Design <span>(22)</span></a></li>
-                  <li><a href="#">Creative <span>(8)</span></a></li>
-                  <li><a href="#">Educaion <span>(14)</span></a></li>
+                  <li><a href="blog-tag.php?id=1">News</a></li>
+                  <li><a href="blog-tag.php?id=2">Travel</a></li>
+                  <li><a href="blog-tag.php?id=3">Life Hacks</a></li>
+                  <li><a href="blog-tag.php?id=4">Promo</a></li>
+
                 </ul>
               </div><!-- End sidebar categories-->
 
