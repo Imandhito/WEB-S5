@@ -43,13 +43,13 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
   <?php include_once 'logics/connect.php';
+  session_start();
   $sql = "SELECT * FROM vehicle";
   $sql_article = "SELECT *,article.id as article_id ,user.name as author , article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id ORDER BY article.id DESC LIMIT 25 ";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
-  $sql_user = 'SELECT * FROM user';
+  $sql_user = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
   $result_user = $conn->query($sql_user);
   $data = $result_user->fetch_object();
   ?>
@@ -62,10 +62,10 @@
   <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="index.php" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>HeroBiz<span>.</span></h1>
+        <h1>RoamRent<span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -206,8 +206,8 @@
             <div class="blog-pagination">
               <ul class="justify-content-center">
               <?php
-                if (strcmp($data->role, "admin") == 0) {
-                echo('<a href="users.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>');
+                if (strcmp($data->role, "admin") != 0) {
+                echo('<a href="add-blog-form.php"><button class="btn btn-outline-info alert-delete-confirm">Add Article</button></a>');
                 }
               ?>
               </ul>
