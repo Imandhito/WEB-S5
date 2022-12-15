@@ -13,7 +13,7 @@
   include_once 'logics/connect.php';
   include "layout-head-import-hero.php";
   $sql = "SELECT * FROM vehicle";
-  $sql_article = "SELECT * FROM article INNER JOIN user ON article.user_id=user.id ORDER BY article.id DESC LIMIT 9";
+  $sql_article = "SELECT *, article.id as article_id FROM article INNER JOIN user ON article.user_id=user.id ORDER BY article.id DESC LIMIT 9";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
   ?>
@@ -671,7 +671,7 @@
                 </div>
                 <h3 class="post-title"><?= $row['title'] ?></h3>
                 <!-- <p>Dengan pergantian CEO baru, telah dibentuknya peraturan - peraturan baru. Telah di lihat bahwa peraturan tersebut memberikan dampak besar ke...</p> -->
-                <a href="blog-details.php?id=<?= $row['id'] ?>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                <a href="blog-details.php?id=<?= $row['article_id'] ?>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           <?php } ?>
