@@ -46,7 +46,7 @@
 
   <?php include_once 'logics/connect.php';
   $temp_id = $_GET['id'];
-  $sql = "SELECT *, article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id WHERE article.id = " . $temp_id;
+  $sql = "SELECT *,user.name as users_name ,article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id WHERE article.id = " . $temp_id;
   $result = $conn->query($sql);
   $value = $result->fetch_object();
   ?>
@@ -169,7 +169,7 @@
 
               <div class="meta-top">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html"><h0><?= $value->name ?></h0></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html"><h0><?= $value->users_name ?></h0></a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">Jan 1, 2022</time></a></li>
                   <!-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li> -->
                 </ul>
@@ -195,7 +195,7 @@
             <div class="post-author d-flex align-items-center">
               <img src="assets/img/hero/blog/blog-author.jpg" class="rounded-circle flex-shrink-0" alt="">
               <div>
-                <h4><?= $value->name ?></h4>
+                <h4><?= $value->users_name ?></h4>
                 <div class="social-links">
                   <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
                   <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
@@ -206,7 +206,11 @@
                 </p>
               </div>
             </div><!-- End post author -->
-
+          <td>
+            <a href="edit-blog-form.php?id='<?= $temp_id ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
+            <a href="logics/delete-blog.php?id='<?= $temp_id ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
+            <!-- <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button> -->
+          </td>
           </div>
 
 
@@ -266,7 +270,7 @@
             </form>
 
           </div>
-
+        
         </div>
       </div>
     </div>
@@ -294,7 +298,6 @@
           <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
-
       </div>
     </div>
 
