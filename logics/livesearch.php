@@ -1,53 +1,52 @@
 <?php
-include 'logics/connect.php';
 
-if(isset($_POST['input'])){
-    $input = $_POST['input'];
-    $sql = "SELECT * FROM user WHERE name LIKE '{$input}%'";
+include_once 'connect.php';
 
-    $result = $conn->query($sql);
-    if(mysqli_num_rows($result)>0){?>
-        <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
+if(isset($_POST['query'])){
+    $input = $_POST['query'];
+    $statement = $conn->prepare("SELECT * FROM user WHERE name LIKE CONCAT('%','?','%') ");
+    $statement -> bind_param("ss",$input,$input);
+}else{
+    $statement=$conn->prepare("SELECT * FROM user");
+}
+$statement->execute();
+$result=$statement->get_result();
 
-                  <?php while ($row = $result->fetch_assoc()) { ?>
+if($result->num_rows>0){
+    $output = "<thead>
+                <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>";
+
+                while ($row = $result->fetch_assoc()) {
+                    $output .="
                     <tr>
-                      <td>
-                        <a href="users-profile.php?id='<?= $row["id"] ?>'"> <?= $row["id"] ?> </a>
+                      <td>".$row["id"]." </a>
                         <br>
                       </td>
                       <td>
-                        <?= $row["name"] ?>
+                        ".$row["name"]."
                       </td>
                       <td>
-                        <?= $row["email"] ?>
+                        ".$row["email"]."
                       </td>
                       <td>
-                        <?= $row["phone"] ?>
+                        ".$row["phone"]."
                       </td>
-                      <td>
-                        <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                        <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-
-<?php
-
-    }else{
-        echo "<h6 class='text-danger text-center mt-3'>No Data Found</h6>";
-    }
+                      
+                    </tr>";
+                }
+                $output .= "</tbody>";
+                echo $output;
+            
+}else{
+    echo "<h3> NOt found<h3>";
 }
 
 
