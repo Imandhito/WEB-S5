@@ -300,7 +300,14 @@ if (!isset($_SESSION['user_id'])) {
       <nav>
         <p>Berbagai kendaraan pilihan dari kami</p>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
+    <div class="row" style="margin-bottom:25px;">
+                <div class="col-6 ">
+                  <a href="add-vehicle-form.php"><button class="btn btn-primary">Add Vehicle</button></a>
+                </div>
+                
+      </div>
+    <!-- End Page Title -->
     <section class="section">
       <div class="row align-items-top">
         <div class="col">

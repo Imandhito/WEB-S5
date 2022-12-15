@@ -556,6 +556,10 @@
                     <label for="inputPassword" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="inputPassword">
                     </div>
+                    <div class="col-12">
+                    <label for="inputCountry" class="form-label">Country</label>
+                    <input type="text" name="Country" class="form-control" id="inputCountry">
+                    </div>
                     <div class="text-center">
                     <button type="submit" class="btn btn-primary">Create</button>
                     </div>

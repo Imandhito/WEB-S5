@@ -35,20 +35,19 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <?php include 'logics/connect.php';
-  session_start();
-  $temp_id = $_GET["id"];
-  $sql = "SELECT * FROM user WHERE id = " . $temp_id;
-  $result = $conn->query($sql);
-  $value = $result->fetch_object();
-
-  $sqli = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-  $results = $conn->query($sqli);
-  $data = $results->fetch_object();
-
- 
-  ?>
+  <?php
   
+  include('logics/connect.php');
+
+  session_start();
+  if (!isset($_SESSION['user_id'])) {
+    header("location:login.php");
+  }
+
+  $sql = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
+  $result = $conn->query($sql);
+  $data = $result->fetch_object();
+  ?>
 </head>
 
 <body>
@@ -57,8 +56,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-      <a href="home.php" class="logo d-flex align-items-center">
+    <a href="home.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">RoamRent.</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -225,11 +223,11 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $data->name?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $data->name ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
+            <li class="dropdown-header">
               <h6><?= $data->name ?></h6>
               <span>Web Designer</span>
             </li>
@@ -283,7 +281,6 @@
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -332,8 +329,7 @@
           </li>
           <li>
             <a href="components-carousel.html">
-              <i class="bi bi-c
-              ircle"></i><span>Carousel</span>
+              <i class="bi bi-circle"></i><span>Carousel</span>
             </a>
           </li>
           <li>
@@ -524,11 +520,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Edit user</h1>
+      <h1>Add a new vehicle</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-          <li class="breadcrumb-item active"><a href="users.php">Daftar Pengguna</a></li>
+          <li class="breadcrumb-item active"><a href="vehicle.php">Vehicle</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -539,42 +535,39 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Edit User</h5>
+              <h5 class="card-title">Add Vehicle</h5>
 
               <!-- Vertical Form -->
-            <form method="post" action="logics/user-edit-form.php">
-
+            <form method="post" action="logics/add-vehicle.php">
                 <form class="row g-3">
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="id_user" type="hidden" value="<?= $temp_id ?>" />
-                        <input name="name" type="text" class="form-control" id="fullName" value="<?= $value->name ?>">
-                      </div>
+                    <div class="col-12">
+                    <label for="inputName" class="form-label">Nama Kendaraan</label>
+                    <input type="text" name="name" class="form-control" id="inputName">
                     </div>
-                    <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="<?= $value->phone ?>">
-                      </div>
+                    <div class="col-12">
+                    <label for="inputImage" class="form-label">Insert Image</label>
+                    <input type="file" name="image" class="form-control" id="inputImage">
                     </div>
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="<?= $value->email ?>">
-                      </div>
+                    <div class="col-12">
+                    <label for="inputAddress" class="form-label">Kapasitas</label>
+                    <input type="text" name="kapasitas" class="form-control" id="inputAddress" >
                     </div>
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="<?= $value->country ?>">
-                      </div>
+                    <div class="col-12">
+                    <label for="inputPrice" class="form-label">Price</label>
+                    <input type="text" name="price" class="form-control" id="inputPrice">
+                    </div>
+                    <div class="col-12">
+                    <label for="inputCountry" class="form-label">Description</label>
+                    <input type="text" name="description" class="form-control" id="inputDescription">
+                    </div>
+                    <div class="col-12">
+                    <label for="inputCountry" class="form-label">Car Category</label>
+                    <input type="text" name="category" class="form-control" id="inputCategory">
                     </div>
                     <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px;">Add</button>
                     </div>
-                </form>
+                </form>`
             </form><!-- Vertical Form -->
 
             </div>

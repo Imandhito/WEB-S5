@@ -19,7 +19,8 @@
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $sql = "UPDATE user SET email='" . $email . "', name='" . $name . "',phone='" . $phone . "'  WHERE id =" . $id;
+    $country = $_POST['country'];
+    $sql = "UPDATE user SET email='" . $email . "', name='" . $name . "',phone='" . $phone . "', country='". $country . "'  WHERE id =" . $id;
 
     $conn->query($sql);
     header("location: ../users.php");
