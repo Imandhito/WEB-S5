@@ -23,6 +23,7 @@
     $country = $_POST['country'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
+    $twitter = $_POST['twitter'];
 
     $my_image = $_FILES['my_image'];
     $img_name = $_FILES['my_image']['name'];
@@ -43,12 +44,12 @@
             $new_img_name = uniqid('', true).'.'.$img_ex_lc;
             $img_upload_path = 'photo/'.$new_img_name;
             move_uploaded_file($tmp_name, $img_upload_path);
-            $sql = "UPDATE user SET profile_picture='".$new_img_name ."', email='" . $email . "', name='" . $name . "',job='" . $job . "',about='" . $about . "',country='" . $country . "',address='" . $address . "',phone='" . $phone . "' WHERE id=" . $id;
+            $sql = "UPDATE user SET twitter='" . $twitter . "', profile_picture='".$new_img_name ."', email='" . $email . "', name='" . $name . "',job='" . $job . "',about='" . $about . "',country='" . $country . "',address='" . $address . "',phone='" . $phone . "' WHERE id=" . $id;
             $conn->query($sql);
             header("location: ../users-profile.php");
         }
         else {
-            $sql2 = "UPDATE user SET  email='" . $email . "', name='" . $name . "',job='" . $job . "',about='" . $about . "',country='" . $country . "',address='" . $address . "',phone='" . $phone . "' WHERE id=" . $id;
+            $sql2 = "UPDATE user SET twitter='" . $twitter . "', email='" . $email . "', name='" . $name . "',job='" . $job . "',about='" . $about . "',country='" . $country . "',address='" . $address . "',phone='" . $phone . "' WHERE id=" . $id;
             $conn->query($sql2);
             header("location: ../users-profile.php");
         }

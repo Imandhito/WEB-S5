@@ -73,10 +73,9 @@
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" id="live_search" name="query" placeholder="Search" title="Enter search keyword">
-        
-      </form>
+      
+       <input type="text" id="live_search" name="live_search" placeholder="Search" title="Enter search keyword">
+      
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
@@ -376,43 +375,45 @@
                   <a href="user-print.php"><button class="btn btn-info">Print</button></a>
                 </div>
               </div>
-
+              <div id="table-data">
               <!-- Default Table -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <?php while ($row = $result->fetch_assoc()) { ?>
+                <table class="table">
+                  <thead>
                     <tr>
-                      <td>
-                        <a href="users-profile.php?id='<?= $row["id"] ?>'"> <?= $row["id"] ?> </a>
-                        <br>
-                      </td>
-                      <td>
-                        <?= $row["name"] ?>
-                      </td>
-                      <td>
-                        <?= $row["email"] ?>
-                      </td>
-                      <td>
-                        <?= $row["phone"] ?>
-                      </td>
-                      <td>
-                        <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                        <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button>
-                      </td>
+                      <th scope="col">Id</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Action</th>
                     </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                      <tr>
+                        <td>
+                          <a href="users-profile.php?id='<?= $row["id"] ?>'"> <?= $row["id"] ?> </a>
+                          <br>
+                        </td>
+                        <td>
+                          <?= $row["name"] ?>
+                        </td>
+                        <td>
+                          <?= $row["email"] ?>
+                        </td>
+                        <td>
+                          <?= $row["phone"] ?>
+                        </td>
+                        <td>
+                          <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
+                          <a href="logics/delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
+                          <!-- <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button> -->
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
               <!-- End Default Table Example -->
             </div>
           </div>
@@ -458,72 +459,68 @@
 
 
 
-  <script>
-    function deleteConfirm(id) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: 'Delete'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          //Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
-          $.ajax({
-            url: 'delete.php',
-            type: 'POST',
-            data: {
-              id: id
-            },
-            dataType: 'php',
-            success: function(response) {
-              /* ini error delete */
-              Swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
-            },
-            error: function() {
-              /* ini success delete */
-              Swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
-                window.location = "users.php";
-              });
-
-            }
-          })
-          // .done(function(response){
-          //     swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
-          //         window.location = "index.php";
-          //     });
-          // })
-          // .fail(function(){
-          //     swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
-          // });
-
-
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swal.fire('Canceled', 'Your data is safe', 'info');
-        }
-      });
-
-    }
-    $(document).ready(function(){
-        $("#live_search").keyup(function(){
-          var input = $(this).val();
-          
-          if(input != ""){
-            $.ajax({
-                url:"livesearch.php",
-                method:"POST",
-                data:{input:input},
-
-                sucess:function(data){
-                  $("#searchresult").html(data);
-                }
-            });
-          }else{
-            $("#searchresult").css("display","none");
+  <script type="text/javascript">
+     $(document).ready(function(){
+      $("#live_search").keyup(fucntion(){
+        var search = $(this).val();
+        $.ajax({
+          url:'livesearch.php',
+          method:'post',
+          data:{query:search},
+          success:function(response){
+            $("$table-data").html(response);
           }
-        });
+        })
+
+      });
     });
 
+    // function deleteConfirm(id) {
+    //   Swal.fire({
+    //     title: "Are you sure?",
+    //     text: "Once deleted, you will not be able to recover this imaginary file!",
+    //     icon: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonText: 'Delete'
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       //Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+    //       $.ajax({
+    //         url: 'delete.php',
+    //         type: 'POST',
+    //         data: {
+    //           id: id
+    //         },
+    //         dataType: 'php',
+    //         success: function(response) {
+    //           /* ini error delete */
+    //           Swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
+    //         },
+    //         error: function() {
+    //           /* ini success delete */
+    //           Swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
+    //             window.location = "users.php";
+    //           });
+
+    //         }
+    //       })
+    //       // .done(function(response){
+    //       //     swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
+    //       //         window.location = "index.php";
+    //       //     });
+    //       // })
+    //       // .fail(function(){
+    //       //     swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
+    //       // });
+
+
+    //     } else if (result.dismiss === Swal.DismissReason.cancel) {
+    //       swal.fire('Canceled', 'Your data is safe', 'info');
+    //     }
+    //   });
+
+    // }
+   
   </script>
 </body>
 
