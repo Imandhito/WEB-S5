@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 14, 2022 at 08:27 PM
+-- Generation Time: Dec 15, 2022 at 12:59 PM
 -- Server version: 10.9.4-MariaDB
 -- PHP Version: 8.1.13
 
@@ -42,26 +42,6 @@ CREATE TABLE `article` (
 
 INSERT INTO `article` (`id`, `title`, `text`, `img_url`, `author`, `user_id`) VALUES
 (1, 'Sekarang Customer Service akan Tersedia 24/7 Jam Seminggu Tanpa Membunuh Satu Karyawan Pun', 'Officiis animi maxime nulla quo et harum eum quis a. Sit hic in qui quos fugit ut rerum atque. Optio provident dolores atque voluptatem rem excepturi molestiae qui. Voluptatem laborum omnis ullam quibusdam perspiciatis nulla nostrum. Voluptatum est libero eum nesciunt aliquid qui. Quia et suscipit non sequi. Maxime sed odit. Beatae nesciunt nesciunt accusamus quia aut ratione aspernatur dolor. Sint harum eveniet dicta exercitationem minima. Exercitationem omnis asperiores natus aperiam dolor consequatur id ex sed. Quibusdam rerum dolores sint consequatur quidem ea. Beatae minima sunt libero soluta sapiente in rem assumenda. Et qui odit voluptatem. Cum quibusdam voluptatem voluptatem accusamus mollitia aut atque aut. ', 'assets/img/hero/blog/blog-1.jpg', 'John Doe', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `id` int(12) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'Car'),
-(2, 'Motorcycle'),
-(3, 'Bicycle');
 
 -- --------------------------------------------------------
 
@@ -147,13 +127,13 @@ INSERT INTO `vechile_category` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `vehicle` (
-  `id` int(12) NOT NULL,
+  `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
   `img_url` text DEFAULT NULL,
-  `category` varchar(100) NOT NULL,
   `passanger` int(10) NOT NULL,
   `price` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `is_borrow` tinyint(1) NOT NULL DEFAULT 0,
   `vehicle_category_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -161,10 +141,11 @@ CREATE TABLE `vehicle` (
 -- Dumping data for table `vehicle`
 --
 
-INSERT INTO `vehicle` (`id`, `name`, `img_url`, `category`, `passanger`, `price`, `description`, `vehicle_category_id`) VALUES
-(1, 'CBR1000RR-R FIREBLADE', 'assets/img/hero/portfolio/CBR1000RR-R FIREBLADE.jpg', 'motorcycle', 1, '750000', 'Tesla Model X merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 2),
-(2, 'Mongoose Legion L10', 'assets/img/hero/portfolio/Mongoose Legion L10.jpg', 'bicycle', 1, '500000', 'Mongoose Legion L10 merupakan sepeda mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 3),
-(3, 'Mercedes-Benz EQS', 'assets/img/hero/portfolio/Mercedes-Benz EQS.png', 'car', 4, '1000000', 'Mercedes-Benz EQS merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 1);
+INSERT INTO `vehicle` (`id`, `name`, `img_url`, `passanger`, `price`, `description`, `is_borrow`, `vehicle_category_id`) VALUES
+(1, 'CBR1000RR-R FIREBLADE', 'assets/img/vehicles/CBR1000RR-R FIREBLADE.jpg', 1, '750000', 'Tesla Model X merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 2),
+(2, 'Mongoose Legion L10', 'assets/img/vehicles/Mongoose Legion L10.jpg', 1, '500000', 'Mongoose Legion L10 merupakan sepeda mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 3),
+(3, 'Mercedes-Benz EQS', 'assets/img/vehicles/Mercedes-Benz EQS.png', 4, '1000000', 'Mercedes-Benz EQS merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 1),
+(4, 'Volkswagen ID.3 2019', 'assets/img/vehicles/volkswagen-id-3-2019.jpg', 4, '120000', '', 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -176,12 +157,6 @@ INSERT INTO `vehicle` (`id`, `name`, `img_url`, `category`, `passanger`, `price`
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -214,12 +189,6 @@ ALTER TABLE `article`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -235,7 +204,7 @@ ALTER TABLE `vechile_category`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -39,7 +39,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <?php include 'logics/connect.php'; 
+  <?php include 'logics/connect.php';
   $sql = 'SELECT * FROM user';
   $result = $conn->query($sql);
 
@@ -54,10 +54,10 @@
 
   if (strcmp($data->role, "user") == 0) {
     header("location:home.php");
-  } 
+  }
   ?>
-   
-  
+
+
 </head>
 
 <body>
@@ -228,17 +228,17 @@
           </ul><!-- End Messages Dropdown Items -->
 
         </li><!-- End Messages Nav -->
-        
+
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?=$data -> name?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $data->name ?></span>
           </a><!-- End Profile Iamge Icon -->
-          
+
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
+            <li class="dropdown-header">
               <h6><?= $data->name ?></h6>
               <span>Web Designer</span>
             </li>
@@ -355,19 +355,27 @@
     <div class="pagetitle">
       <h1>Daftar pengguna</h1>
       <nav>
-      <ol class="breadcrumb">
+        <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-          
+
         </ol>
       </nav>
     </div><!-- End Page Title -->
     <section class="section">
       <div class="row align-items-top">
         <div class="col">
-        <div class="card">
+          <div class="card">
             <div class="card-body">
               <h5 class="card-title">List users</h5>
-              <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
+
+              <div class="row">
+                <div class="col-6">
+                  <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <a href="user-print.php"><button class="btn btn-info">Print</button></a>
+                </div>
+              </div>
 
               <!-- Default Table -->
               <table class="table">
@@ -381,39 +389,37 @@
                   </tr>
                 </thead>
                 <tbody>
-                
-                <?php while($row = $result->fetch_assoc()) { ?>
-                  <tr>
-                    <td>
+
+                  <?php while ($row = $result->fetch_assoc()) { ?>
+                    <tr>
+                      <td>
                         <a href="users-profile.php?id='<?= $row["id"] ?>'"> <?= $row["id"] ?> </a>
                         <br>
-                    </td>
-                    <td>
+                      </td>
+                      <td>
                         <?= $row["name"] ?>
-                    </td>
-                    <td>
+                      </td>
+                      <td>
                         <?= $row["email"] ?>
-                    </td>
-                    <td>
+                      </td>
+                      <td>
                         <?= $row["phone"] ?>
-                    </td>
-                    <td>
-                    <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                        <button
-                           onclick="deleteConfirm(<?= $row['id'] ?>)"
-                           class="btn btn-outline-danger alert-delete-confirm">Delete</button>
-                    </td>
-                  </tr>
-                <?php } ?>
+                      </td>
+                      <td>
+                        <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
+                        <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button>
+                      </td>
+                    </tr>
+                  <?php } ?>
                 </tbody>
               </table>
               <!-- End Default Table Example -->
             </div>
           </div>
-        
-        </div>
 
         </div>
+
+      </div>
 
       </div>
     </section>
@@ -448,53 +454,55 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
-  
-  
+
+
+
   <script>
     function deleteConfirm(id) {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: 'Delete'
-        }).then((result) => {
-            if (result.isConfirmed) {
-              //Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
-                $.ajax({
-                    url: 'delete.php',
-                    type: 'POST',
-                    data: {id:id},
-                    dataType: 'php',
-                    success: function (response) {
-                      /* ini error delete */
-                        Swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
-                    },
-                    error: function () {
-                      /* ini success delete */
-                        Swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
-                          window.location = "users.php";
-                        });
-                          
-                    }
-                })
-                // .done(function(response){
-                //     swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
-                //         window.location = "index.php";
-                //     });
-                // })
-                // .fail(function(){
-                //     swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
-                // });
-                
-                
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                swal.fire('Canceled', 'Your data is safe', 'info');
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Delete'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+          $.ajax({
+            url: 'delete.php',
+            type: 'POST',
+            data: {
+              id: id
+            },
+            dataType: 'php',
+            success: function(response) {
+              /* ini error delete */
+              Swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
+            },
+            error: function() {
+              /* ini success delete */
+              Swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
+                window.location = "users.php";
+              });
+
             }
-    });
+          })
+          // .done(function(response){
+          //     swal.fire('Deleted!', "Successfully Deleted", "success").then(function() {
+          //         window.location = "index.php";
+          //     });
+          // })
+          // .fail(function(){
+          //     swal.fire('Oops...', 'Something went wrong with ajax!', 'error');
+          // });
+
+
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swal.fire('Canceled', 'Your data is safe', 'info');
+        }
+      });
     }
-</script>
+  </script>
 </body>
 
 </html>
