@@ -27,46 +27,59 @@
     <!-- ======= Header ======= -->
     <?php include 'layout-header-nice.php'; ?>
     <!-- End Header -->
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
 
-    <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
+<ul class="sidebar-nav" id="sidebar-nav">
 
-        <ul class="sidebar-nav" id="sidebar-nav">
+  <li class="nav-item">
+    <a class="nav-link " href="index.html">
+      <i class="bi bi-grid"></i>
+      <span>Home</span>
+    </a>
+  </li><!-- End Home Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="home.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Home</span>
-                </a>
-            </li><!-- End Home Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="vehicle.php">
+      <i class="bi bi-menu-button-wide"></i>
+      <span>Vehicles</span>
+    </a>
+  </li><!-- End Vehicles Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link " href="vehicle.php">
-                    <i class="bi bi-menu-button-wide"></i>
-                    <span>Vehicles</span>
-                </a>
-            </li><!-- End Vehicles Nav -->
+  <?php
+if (strcmp($auth_role, "admin") == 0) {
+?>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="vehicle=category.php">
+      <i class="bi bi-menu-button-wide"></i>
+      <span>Vehicles Category</span>
+    </a>
+  </li><!-- End Vehicles Nav -->
+<?php
+}
+?>
+  
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="users.php">
-                    <i class="bi bi-person"></i>
-                    <span>Users</span>
-                </a>
-            </li><!-- End Users Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="users.php">
+      <i class="bi bi-person"></i>
+      <span>Users</span>
+    </a>
+  </li><!-- End Users Nav -->
 
-            <li class="nav-heading">Pages</li>
+  <li class="nav-heading">Pages</li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="blog.php">
-                    <i class="bi bi-grid"></i>
-                    <span>News</span>
-                </a>
-            </li><!-- End News Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="blog.html">
+      <i class="bi bi-grid"></i>
+      <span>News</span>
+    </a>
+  </li><!-- End News Nav -->
 
-        </ul>
+</ul>
 
-    </aside><!-- End Sidebar-->
-
+</aside>
+<!-- End Sidebar-->
     <main id="main" class="main">
 
         <div class="pagetitle">

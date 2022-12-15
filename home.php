@@ -64,7 +64,7 @@
   if (strcmp($auth_role, "admin") == 0) {
     ?>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle.php">
+        <a class="nav-link collapsed" href="vehicle=category.php">
           <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles Category</span>
         </a>
@@ -92,7 +92,8 @@
 
     </ul>
 
-  </aside><!-- End Sidebar-->
+  </aside>
+  <!-- End Sidebar-->
 
   <main id="main" class="main">
 

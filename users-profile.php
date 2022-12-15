@@ -283,41 +283,41 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php">
+        <a class="nav-link " href="index.html">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
       </li><!-- End Home Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Vehicles</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" href="vehicle.php">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Vehicles</span>
         </a>
-        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="item_list.php">
-              <i class="bi bi-circle"></i><span>Mobil</span>
-            </a>
-          </li>
-          <li>
-            <a href="item_list.php">
-              <i class="bi bi-circle"></i><span>Motor</span>
-            </a>
-          </li>
-          <li>
-            <a href="item_list.php">
-              <i class="bi bi-circle"></i><span>Sepedah Pancal</span>
-            </a>
-          </li>
-        </ul>
       </li><!-- End Vehicles Nav -->
+
+      <?php
+  if (strcmp($auth_role, "admin") == 0) {
+    ?>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="vehicle=category.php">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Vehicles Category</span>
+        </a>
+      </li><!-- End Vehicles Nav -->
+    <?php
+  }
+  ?>
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users.php">
           <i class="bi bi-person"></i>
           <span>Users</span>
         </a>
-      </li><!-- End News Nav -->
+      </li><!-- End Users Nav -->
+
+      <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="blog.html">
@@ -326,15 +326,10 @@
         </a>
       </li><!-- End News Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html#contact">
-          <i class="bi-activity"></i>
-          <span>Contact Us</span>
-        </a>
-      </li><!-- End News Nav -->
     </ul>
 
-  </aside><!-- End Sidebar-->
+  </aside>
+  <!-- End Sidebar-->
 
   <main id="main" class="main">
 

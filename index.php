@@ -560,7 +560,7 @@
             <?php while ($row = $result->fetch_assoc()) { ?>
 
               <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-<?= $row['vehicle_category'] ?>">
-                <img src="<?= $row['img_url'] ?>" class="img-fluid" alt="">
+                <img src="assets/img/vehicles/<?= $row['img_url'] ?>" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4><?= $row['name'] ?></h4>
                   <a href="assets/img/hero/portfolio/2021-skoda-octavia-rs.jpg" title="App 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>

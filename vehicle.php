@@ -31,18 +31,32 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="home.php">
+        <a class="nav-link " href="index.html">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
       </li><!-- End Home Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="vehicle.php">
+        <a class="nav-link collapsed" href="vehicle.php">
           <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles</span>
         </a>
       </li><!-- End Vehicles Nav -->
+
+      <?php
+  if (strcmp($auth_role, "admin") == 0) {
+    ?>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="vehicle=category.php">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Vehicles Category</span>
+        </a>
+      </li><!-- End Vehicles Nav -->
+    <?php
+  }
+  ?>
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users.php">
@@ -54,7 +68,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="blog.php">
+        <a class="nav-link collapsed" href="blog.html">
           <i class="bi bi-grid"></i>
           <span>News</span>
         </a>
@@ -62,7 +76,8 @@
 
     </ul>
 
-  </aside><!-- End Sidebar-->
+  </aside>
+  <!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -99,12 +114,12 @@
             <div class="card mb-3">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="<?= $row['img_url'] ?>" class="img-fluid rounded-start" alt="...">
+                  <img src="assets/img/vehicles/<?= $row['img_url'] ?>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title"><?= $row['name'] ?></h5>
-                    <ul class="list-group">
+                    <ul class="list-group mb-2">
                       <!-- <li class="list-group-item">
                       <i class="ri-gas-station-line text-warning"></i>
                       Petrol, Max 15 Liter
