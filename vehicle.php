@@ -343,7 +343,7 @@ if (!isset($_SESSION['user_id'])) {
                         Rp <?= $row['price'] ?>/hari
                       </li>
                     </ul>
-                    <a href="item_detail.php?id=<?= $row['id'] ?>" class="active">
+                    <a href="vehicle-detail.php?id=<?= $row['id'] ?>" class="active">
                       <button type="button" class="btn btn-primary">
                         <i class="bi bi-eye me-1"></i>
                         Detail

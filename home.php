@@ -135,6 +135,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="vehicle.php">
+          <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles</span>
         </a>
       </li><!-- End Vehicles Nav -->
@@ -352,7 +353,7 @@
             <div class="card-body pb-0">
               <h5 class="card-title">Vehicles <span>| Today</span></h5>
               <?php
-              $query_vehicle_availability = "SELECT vc.name, COUNT(v.id) as total FROM vehicle v LEFT JOIN vechile_category vc on v.vehicle_category_id = vc.id GROUP BY vc.name";
+              $query_vehicle_availability = "SELECT vc.name, COUNT(v.id) as total FROM vehicle v LEFT JOIN vehicle_category vc on v.vehicle_category_id = vc.id GROUP BY vc.name";
               $result_vehicle_availability = $conn->query($query_vehicle_availability);
               //$data_vehicle_availability = $result_vehicle_availability->fetch_assoc()
               ?>
