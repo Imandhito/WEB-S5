@@ -14,7 +14,7 @@
     include 'logics/connect.php';
     include 'logics/auth-check.php';
 
-    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id';
+    $sql = 'SELECT * FROM vehicle_category';
     $result = $conn->query($sql);
     ?>
 </head>
@@ -83,23 +83,14 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col"><h5 class="card-title">Manage Vehicle</h5></div>
-                            <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle-add-form.php" class="btn btn-primary">Add</a>
-                </div>
-                        </div>
+                        <h5 class="card-title">Manage Vehicle</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
                         <!-- Default Table -->
                         <table class="table col">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Passanger</th>
-                                    <th scope="col">Is Being Borrowed</th>
+                                    <th scope="col">Category Name</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -111,11 +102,9 @@
                                     <tr>
                                         <th scope="row"><?= $i ?></th>
                                         <td><?= $row['name'] ?></td>
-                                        <td><?= $row['vehicle_category'] ?></td>
-                                        <td><?= $row['price'] ?></td>
-                                        <td><?= $row['passanger'] ?></td>
-                                        <td><?= $row['is_borrow'] ?></td>
                                         <td>
+                                            <a href="vehicle-category-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
+                                            <a href="logics/vehicle-category-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
                                         </td>
                                     </tr>
                                 <?php $i++;

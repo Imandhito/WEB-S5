@@ -14,8 +14,11 @@
     include 'logics/connect.php';
     include 'logics/auth-check.php';
 
-    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id';
+    $id=$_GET['id'];
+
+    $sql = 'SELECT * FROM vehicle_category WHERE id = ' . $temp_id;
     $result = $conn->query($sql);
+    $value = $result->fetch_object();
     ?>
 </head>
 
@@ -69,13 +72,13 @@
         <div class="pagetitle">
             <div class="row">
                 <div class="col">
-                    <h1>Daftar Kendaraan</h1>
+                    <h1>Daftar Kategori Kendaraan</h1>
                     <nav>
-                        <p>Berbagai kendaraan pilihan dari kami</p>
+                        <p>Berbagai kategori kendaraan dapat dibuat di sini</p>
                     </nav>
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle.php" class="btn btn-primary">View</a>
+                    <a href="vehicle.php" class="btn btn-primary">Add</a>
                 </div>
             </div>
         </div><!-- End Page Title -->
@@ -83,46 +86,20 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col"><h5 class="card-title">Manage Vehicle</h5></div>
-                            <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle-add-form.php" class="btn btn-primary">Add</a>
-                </div>
-                        </div>
+                        <h5 class="card-title">Manage Cateogory</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
-                        <!-- Default Table -->
-                        <table class="table col">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Passanger</th>
-                                    <th scope="col">Is Being Borrowed</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 1;
-                                while ($row = $result->fetch_assoc()) {
-                                ?>
-                                    <tr>
-                                        <th scope="row"><?= $i ?></th>
-                                        <td><?= $row['name'] ?></td>
-                                        <td><?= $row['vehicle_category'] ?></td>
-                                        <td><?= $row['price'] ?></td>
-                                        <td><?= $row['passanger'] ?></td>
-                                        <td><?= $row['is_borrow'] ?></td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                <?php $i++;
-                                } ?>
-                            </tbody>
-                        </table>
-                        <!-- End Default Table Example -->
+                        <!-- Vertical Form -->
+              <form class="row g-3" action="logics/vehicle-edit.php">
+                <div class="col-12">
+                  <label for="name" class="form-label">Nama</label>
+                  <input type="text" class="form-control" id="name" placeholder="Category Name" name="name" value="<?= $value->name ?>">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- Vertical Form -->
+
                     </div>
                 </div>
             </div>
