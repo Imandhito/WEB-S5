@@ -45,9 +45,9 @@
   ======================================================== -->
 
   <?php include_once 'logics/connect.php';
-  $temp_id = $_GET["article_category.id"];
+  $temp_id = $_GET["id"];
   $sql = "SELECT * FROM vehicle";
-  $sql_article = "SELECT *,article.id as article_id ,user.name as author , article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id WHERE article.id = " . $temp_id . " ORDER BY article.id DESC LIMIT 25 ";
+  $sql_article = "SELECT *,article.id as article_id ,user.name as author , article_category.name as category_name, article_category.id as category_id FROM article INNER JOIN user ON article.user_id=user.id INNER JOIN article_category ON article.article_category_id = article_category.id WHERE article_category.id = " . $temp_id . " ORDER BY article.id DESC LIMIT 25 ";
   $result = $conn->query($sql);
   $result_article = $conn->query($sql_article);
   $sql_user = 'SELECT * FROM user';

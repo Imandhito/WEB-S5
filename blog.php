@@ -191,12 +191,7 @@
                     <!-- <p>Dengan pergantian CEO baru, telah dibentuknya peraturan - peraturan baru. Telah di lihat bahwa peraturan tersebut memberikan dampak besar ke...</p> -->
                     <a href="blog-details.php?id=<?= $row['article_id'] ?>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                     </div>
-                    <?php
-                      if (strcmp($data->role, "admin") == 0) {
-                        echo('<a href="users.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>');
-                      }
-                      ?>
-                </div>
+                  </div>
                 <?php } ?>
 
             </div>
@@ -210,9 +205,11 @@
 
             <div class="blog-pagination">
               <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+              <?php
+                if (strcmp($data->role, "admin") == 0) {
+                echo('<a href="users.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>');
+                }
+              ?>
               </ul>
             </div><!-- End blog pagination -->
 
