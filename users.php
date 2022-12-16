@@ -16,7 +16,7 @@
   include 'logics/auth-check.php';
 
   if (!empty($_POST)){
-    $sql = 'SELECT * FROM user WHERE name OR email OR phone LIKE "%'.$_POST["live_search"].'%"';
+    $sql = 'SELECT * FROM user WHERE name LIKE "%'.$_POST["live_search"].'%" OR email LIKE "%'.$_POST["live_search"].'%" OR phone LIKE "%'.$_POST["live_search"].'%"';
   $result = $conn->query($sql);
   } else {
     $sql = 'SELECT * FROM user';

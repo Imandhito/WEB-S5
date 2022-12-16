@@ -14,8 +14,15 @@
   include 'logics/connect.php';
   include 'logics/auth-check.php';
 
-  $sql = 'SELECT * FROM vehicle';
+  if (!empty($_POST)){
+    $sql = 'SELECT * FROM vehicle WHERE name LIKE "%'.$_POST["search"].'%"';
   $result = $conn->query($sql);
+  } else {
+    $sql = 'SELECT * FROM vehicle';
+    $result = $conn->query($sql);
+  }
+
+
   ?>
 </head>
 
@@ -101,6 +108,21 @@
         
       </div>
     </div>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="row col-12 mb-5">
+                  
+
+                  
+                <div class="col">
+                  <input type="text" id="search" name="search" placeholder="Search" class="form-control" title="Enter search keyword">
+                </div>
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+
+                
+                </div>
+      </form>
     <!-- End Page Title -->
     <section class="section">
       <div class="row align-items-top">

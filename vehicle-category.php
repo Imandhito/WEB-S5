@@ -14,8 +14,15 @@
     include 'logics/connect.php';
     include 'logics/auth-check.php';
 
-    $sql = 'SELECT * FROM vehicle_category';
-    $result = $conn->query($sql);
+    if (!empty($_POST)){
+      $sql = 'SELECT * FROM vehicle_category WHERE name LIKE "%'.$_POST["search"].'%"';
+      $result = $conn->query($sql);
+    } else {
+      $sql = 'SELECT * FROM vehicle_category';
+      $result = $conn->query($sql);
+    }
+
+    
     ?>
 </head>
 
@@ -89,6 +96,7 @@ if (strcmp($auth_role, "admin") == 0) {
                         <p>Berbagai kendaraan pilihan dari kami</p>
                     </nav>
                 </div>
+                
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <a href="vehicle-category-add.php" class="btn btn-primary">Add</a>
                 </div>
@@ -101,6 +109,21 @@ if (strcmp($auth_role, "admin") == 0) {
                         <h5 class="card-title">Manage Vehicle</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
                         <!-- Default Table -->
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="row col-12 mb-5">
+                  
+
+                  
+                <div class="col">
+                  <input type="text" id="search" name="search" placeholder="Search" class="form-control" title="Enter search keyword">
+                </div>
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+
+                
+                </div>
+      </form>
                         <table class="table col">
                             <thead>
                                 <tr>
