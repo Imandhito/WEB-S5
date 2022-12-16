@@ -94,11 +94,17 @@
         </a>
       </li><!-- End News Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog-category.php">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End News Nav -->
     </ul>
 
   </aside>
   <!-- End Sidebar-->
-
+  
   <main id="main" class="main">
 
     <div class="pagetitle">

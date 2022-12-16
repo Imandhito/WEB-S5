@@ -62,18 +62,18 @@
       </li><!-- End Vehicles Nav -->
 
       <?php
-  if (strcmp($auth_role, "admin") == 0) {
-    ?>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle-category.php">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Vehicles Category</span>
-        </a>
-      </li><!-- End Vehicles Nav -->
-    <?php
-  }
-  ?>
-      
+      if (strcmp($auth_role, "admin") == 0) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="vehicle-category.php">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Vehicles Category</span>
+          </a>
+        </li><!-- End Vehicles Nav -->
+      <?php
+      }
+      ?>
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users.php">
@@ -91,6 +91,12 @@
         </a>
       </li><!-- End News Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog-category.php">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End News Nav -->
     </ul>
 
   </aside>
@@ -140,7 +146,7 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                    <h6><?= $data_count_vehicle->total ?></h6>
+                      <h6><?= $data_count_vehicle->total ?></h6>
                       <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
                     </div>
                   </div>
@@ -276,49 +282,49 @@
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
                   <!-- Vertical Bar Chart -->
-              <div id="chart_status_vehicle" style="min-height: 400px;" class="echart"></div>
+                  <div id="chart_status_vehicle" style="min-height: 400px;" class="echart"></div>
 
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#chart_status_vehicle")).setOption({
-                    title: {
-                      text: 'Status Vehicle'
-                    },
-                    tooltip: {
-                      trigger: 'axis',
-                      axisPointer: {
-                        type: 'shadow'
-                      }
-                    },
-                    legend: {},
-                    grid: {
-                      left: '3%',
-                      right: '4%',
-                      bottom: '3%',
-                      containLabel: true
-                    },
-                    xAxis: {
-                      type: 'value',
-                      boundaryGap: [0, 0.01]
-                    },
-                    yAxis: {
-                      type: 'category',
-                      data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
-                    },
-                    series: [{
-                        name: '2011',
-                        type: 'bar',
-                        data: [18203, 23489, 29034, 104970, 131744, 630230]
-                      },
-                      {
-                        name: '2012',
-                        type: 'bar',
-                        data: [19325, 23438, 31000, 121594, 134141, 681807]
-                      }
-                    ]
-                  });
-                });
-              </script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      echarts.init(document.querySelector("#chart_status_vehicle")).setOption({
+                        title: {
+                          text: 'Status Vehicle'
+                        },
+                        tooltip: {
+                          trigger: 'axis',
+                          axisPointer: {
+                            type: 'shadow'
+                          }
+                        },
+                        legend: {},
+                        grid: {
+                          left: '3%',
+                          right: '4%',
+                          bottom: '3%',
+                          containLabel: true
+                        },
+                        xAxis: {
+                          type: 'value',
+                          boundaryGap: [0, 0.01]
+                        },
+                        yAxis: {
+                          type: 'category',
+                          data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+                        },
+                        series: [{
+                            name: '2011',
+                            type: 'bar',
+                            data: [18203, 23489, 29034, 104970, 131744, 630230]
+                          },
+                          {
+                            name: '2012',
+                            type: 'bar',
+                            data: [19325, 23438, 31000, 121594, 134141, 681807]
+                          }
+                        ]
+                      });
+                    });
+                  </script>
                   <!-- End Line Chart -->
 
                 </div>

@@ -49,18 +49,18 @@
       </li><!-- End Vehicles Nav -->
 
       <?php
-  if (strcmp($auth_role, "admin") == 0) {
-    ?>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle-category.php">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Vehicles Category</span>
-        </a>
-      </li><!-- End Vehicles Nav -->
-    <?php
-  }
-  ?>
-      
+      if (strcmp($auth_role, "admin") == 0) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="vehicle-category.php">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Vehicles Category</span>
+          </a>
+        </li><!-- End Vehicles Nav -->
+      <?php
+      }
+      ?>
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users.php">
@@ -78,6 +78,12 @@
         </a>
       </li><!-- End News Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog-category.php">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End News Nav -->
     </ul>
 
   </aside>
