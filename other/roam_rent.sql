@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2022 at 02:58 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Dec 16, 2022 at 03:03 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `article` (
   `id` int(12) NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` text NOT NULL,
+  `text` longtext NOT NULL,
+  `img_url` text DEFAULT NULL,
   `article_category_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -61,7 +61,7 @@ INSERT INTO `article` (`id`, `title`, `text`, `img_url`, `article_category_id`, 
 
 CREATE TABLE `article_category` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -82,17 +82,17 @@ INSERT INTO `article_category` (`id`, `name`) VALUES
 
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `about` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `profile_picture` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `email` varchar(150) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `job` varchar(255) DEFAULT NULL,
+  `about` text DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `profile_picture` text DEFAULT NULL,
+  `phone` varchar(15) NOT NULL,
+  `twitter` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -141,11 +141,11 @@ INSERT INTO `user` (`id`, `email`, `password`, `role`, `name`, `job`, `about`, `
 
 CREATE TABLE `vehicle` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img_url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `img_url` text DEFAULT NULL,
   `passanger` int(10) NOT NULL,
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `description` text NOT NULL,
   `is_borrow` tinyint(1) NOT NULL DEFAULT 0,
   `vehicle_category_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -155,10 +155,10 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`id`, `name`, `img_url`, `passanger`, `price`, `description`, `is_borrow`, `vehicle_category_id`) VALUES
-(1, 'CBR1000RR-R FIREBLADE', 'assets/img/vehicles/CBR1000RR-R FIREBLADE.jpg', 1, '750000', 'Tesla Model X merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 2),
-(2, 'Mongoose Legion L10', 'assets/img/vehicles/Mongoose Legion L10.jpg', 1, '500000', 'Mongoose Legion L10 merupakan sepeda mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 3),
-(3, 'Mercedes-Benz EQS', 'assets/img/vehicles/Mercedes-Benz EQS.png', 4, '1000000', 'Mercedes-Benz EQS merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 1),
-(4, 'Volkswagen ID.3 2019', 'assets/img/vehicles/volkswagen-id-3-2019.jpg', 4, '120000', '', 0, 1);
+(1, 'CBR1000RR-R FIREBLADE', 'CBR1000RR-R FIREBLADE.jpg', 1, '750000', 'Tesla Model X merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 2),
+(2, 'Mongoose Legion L10', 'Mongoose Legion L10.jpg', 1, '500000', 'Mongoose Legion L10 merupakan sepeda mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 3),
+(3, 'Mercedes-Benz EQS', 'Mercedes-Benz EQS.png', 4, '1000000', 'Mercedes-Benz EQS merupakan mobil mewah yang dibandrol hingga 3 Miliar Rupiah, sehingga tidak sembarang orang yang bisa memiliki mobil ini. Ini adalah kesempatan anda untuk bisa menikmati segala fasilitas yang disediakan di dalam mobil ini dengan biaya dibawah 1 juta per hari. ', 0, 1),
+(4, 'Volkswagen ID.3 2019', 'volkswagen-id-3-2019.jpg', 4, '120000', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +168,7 @@ INSERT INTO `vehicle` (`id`, `name`, `img_url`, `passanger`, `price`, `descripti
 
 CREATE TABLE `vehicle_category` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
