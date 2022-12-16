@@ -15,8 +15,13 @@
   include('layout-head-import-nice.php');
   include 'logics/auth-check.php';
 
-  $sql = 'SELECT * FROM user';
+  if (!empty($_POST)){
+    $sql = 'SELECT * FROM user WHERE name LIKE "%'.$_POST["live_search"].'%"';
   $result = $conn->query($sql);
+  } else {
+    $sql = 'SELECT * FROM user';
+    $result = $conn->query($sql);
+  }
 
   $sqli = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
   $results = $conn->query($sqli);
@@ -110,6 +115,22 @@ if (strcmp($auth_role, "admin") == 0) {
               <h5 class="card-title">List users</h5>
 
               <div class="row">
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="row col-12 mb-5">
+                  
+
+                  
+                <div class="col">
+                  <input type="text" id="live_search" name="live_search" placeholder="Search" class="form-control" title="Enter search keyword">
+                </div>
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+
+                
+                </div>
+                </form>
+                
                 <div class="col-6">
                   <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
                 </div>
