@@ -29,8 +29,14 @@
   $result_vehicle = $conn->query($sql_vehicle);
   $data_count_vehicle = $result_vehicle->fetch_object();
 
-  $sql_vehicle = 'SELECT vc.id, COUNT(v.id) as total, vc.name as category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.is_borrow = 0 GROUP BY category ORDER BY vc.id';
-  $result_category = $conn->query($sql_category_vehicle);
+  $sql_vehicle_category = 'SELECT * FROM vehicle_category';
+  $result_vehicle_category = $conn->query($sql_vehicle_category);
+
+  $sql_vehicle_not_borrow_count = 'SELECT vc.id, COUNT(v.id) as total, vc.name as category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.is_borrow = 0 GROUP BY category ORDER BY vc.id';
+  $result_vehicle_not_borrow_count = $conn->query($sql_vehicle_not_borrow_count);
+
+  $sql_vehicle_borrow_count = 'SELECT vc.id, COUNT(v.id) as total, vc.name as category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.is_borrow = 1 GROUP BY category ORDER BY vc.id';
+  $result_vehicle_borrow_count = $conn->query($sql_vehicle_borrow_count);
 
   ?>
 
@@ -287,9 +293,9 @@
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
                       echarts.init(document.querySelector("#chart_status_vehicle")).setOption({
-                        title: {
+                        /* title: {
                           text: 'Status Vehicle'
-                        },
+                        }, */
                         tooltip: {
                           trigger: 'axis',
                           axisPointer: {
@@ -309,17 +315,35 @@
                         },
                         yAxis: {
                           type: 'category',
-                          data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+                          data: [
+                            <?php while ($row = $result_vehicle_category->fetch_assoc()) {
+                        ?> 
+                            '<?= $row['name'] ?>',
+
+                        <?php } ?>
+                          ]
                         },
                         series: [{
-                            name: '2011',
+                            name: 'Being Rented',
                             type: 'bar',
-                            data: [18203, 23489, 29034, 104970, 131744, 630230]
+                            data: [
+                              <?php while ($row = $result_vehicle_borrow_count->fetch_assoc()) {
+                        ?> 
+                            <?= $row['total'] ?>,
+
+                        <?php } ?>
+                            ]
                           },
                           {
-                            name: '2012',
+                            name: 'Available',
                             type: 'bar',
-                            data: [19325, 23438, 31000, 121594, 134141, 681807]
+                            data: [
+                              <?php while ($row = $result_vehicle_not_borrow_count->fetch_assoc()) {
+                        ?> 
+                            <?= $row['total'] ?>,
+
+                        <?php } ?>
+                            ]
                           }
                         ]
                       });
