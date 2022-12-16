@@ -25,41 +25,8 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top" data-scrollto-offset="0">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-
-      <a href="index.php" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>RoamRent<span>.</span></h1>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-
-          <li>
-            <a href="#"><span>Home</span></a>
-          </li>
-
-          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.php#portfolio">Vehicles</a></li>
-          <li><a class="nav-link scrollto" href="index.php#recent-blog-posts">News</a></li>
-          <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle d-none"></i>
-      </nav><!-- .navbar -->
-      <?php if (!isset($_SESSION['user_id'])){?>
-        <a class="btn-getstarted scrollto" href="login.php">Login</a>
-      <?php }else{
-        ?>
-        <a class="btn-getstarted scrollto" href="home.php">Get Started</a>
-      <?php }
-      ?>
-
-
-    </div>
-  </header><!-- End Header -->
+  <?php include 'layout-header-hero.php' ?>
+  <!-- End Header -->
 
   <section id="hero-fullscreen" class="hero-fullscreen d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center position-relative" data-aos="zoom-out">
@@ -658,11 +625,11 @@
           <p>Cerita dan peningkatan kualitas service terbaru kami.</p>
         </div>
 
-        <div class="row">
+        <div class="row g-3">
 
           <?php while ($row = $result_article->fetch_assoc()) {
           ?>
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-4 mb-3" data-aos="fade-up" data-aos-delay="200">
               <div class="post-box">
                 <div class="post-img"><img src="assets/img/hero/blog/<?= $row['img_url'] ?>" class="img-fluid" alt=""></div>
                 <div class="meta">
@@ -677,9 +644,14 @@
               </div>
             </div>
           <?php } ?>
-
+          <div class="row">
+        <div class="col-12 text-center">
+          <a href="blog.php" class="btn btn-primary"><span>More News</span><i class="bi bi-arrow-right"></i></a>
+        </div>
+        </div>
         </div>
 
+        
       </div>
 
     </section><!-- End Recent Blog Posts Section -->
