@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2022 at 03:03 AM
+-- Generation Time: Dec 16, 2022 at 11:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -51,7 +51,8 @@ INSERT INTO `article` (`id`, `title`, `text`, `img_url`, `article_category_id`, 
 (8, 'Tips dan Trik Menghindari Razia Satpol PP Pada Saat Berjualan di Atas Kereta Api\r\n', 'Officiis animi maxime nulla quo et harum eum quis a. Sit hic in qui quos fugit ut rerum atque. Optio provident dolores atque voluptatem rem excepturi molestiae qui. Voluptatem laborum omnis ullam quibusdam perspiciatis nulla nostrum. Voluptatum est libero eum nesciunt aliquid qui. Quia et suscipit non sequi. Maxime sed odit. Beatae nesciunt nesciunt accusamus quia aut ratione aspernatur dolor. Sint harum eveniet dicta exercitationem minima. Exercitationem omnis asperiores natus aperiam dolor consequatur id ex sed. Quibusdam rerum dolores sint consequatur quidem ea. Beatae minima sunt libero soluta sapiente in rem assumenda. Et qui odit voluptatem. Cum quibusdam voluptatem voluptatem accusamus mollitia aut atque aut. ', 'blog-7.jpeg', 3, 26),
 (9, 'Promo Natal dan Tahun Baru, Roam-Rent Sediakan Layanan Gratis Refill Coca-cola Setiap Harinya\r\n', 'Officiis animi maxime nulla quo et harum eum quis a. Sit hic in qui quos fugit ut rerum atque. Optio provident dolores atque voluptatem rem excepturi molestiae qui. Voluptatem laborum omnis ullam quibusdam perspiciatis nulla nostrum. Voluptatum est libero eum nesciunt aliquid qui. Quia et suscipit non sequi. Maxime sed odit. Beatae nesciunt nesciunt accusamus quia aut ratione aspernatur dolor. Sint harum eveniet dicta exercitationem minima. Exercitationem omnis asperiores natus aperiam dolor consequatur id ex sed. Quibusdam rerum dolores sint consequatur quidem ea. Beatae minima sunt libero soluta sapiente in rem assumenda. Et qui odit voluptatem. Cum quibusdam voluptatem voluptatem accusamus mollitia aut atque aut. ', 'blog-8.jpg', 4, 26),
 (10, 'Daftar Kawasan Rawan Longsor yang Cocok Dijadikan Tempat Wisata\r\n', 'Officiis animi maxime nulla quo et harum eum quis a. Sit hic in qui quos fugit ut rerum atque. Optio provident dolores atque voluptatem rem excepturi molestiae qui. Voluptatem laborum omnis ullam quibusdam perspiciatis nulla nostrum. Voluptatum est libero eum nesciunt aliquid qui. Quia et suscipit non sequi. Maxime sed odit. Beatae nesciunt nesciunt accusamus quia aut ratione aspernatur dolor. Sint harum eveniet dicta exercitationem minima. Exercitationem omnis asperiores natus aperiam dolor consequatur id ex sed. Quibusdam rerum dolores sint consequatur quidem ea. Beatae minima sunt libero soluta sapiente in rem assumenda. Et qui odit voluptatem. Cum quibusdam voluptatem voluptatem accusamus mollitia aut atque aut. ', 'blog-9.jpeg', 2, 26),
-(14, '9 Dari 10 Dokter Dunia Menyarankan Untuk Menghabiskan Uang Anda di RoamRent', 'Officiis animi maxime nulla quo et harum eum quis ...', 'https://scontent.fcgk37-2.fna.fbcdn.net/v/t39.30808-6/306904173_419236243697265_808649188315256264_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=sL6xr7FTxV0AX8NUlq1&_nc_ht=scontent.fcgk37-2.fna&oh=00_AfD1CIJ_M1njGlNzngVXFyZZV0ZytIDt7EwNpQq7wq72wg&oe=63A18B2B', 4, 4);
+(14, '9 Dari 10 Dokter Dunia Menyarankan Untuk Menghabiskan Uang Anda di RoamRent (^_^)', 'Officiis animi maxime nulla quo et harum eum quis ...', 'blog-recent-2.jpg', 4, 4),
+(17, 'The Danger of Smoking', 'Smoking is a real threat when we talking about healthy. Because smoking is soo cool that makes you want to smoke just some of ciggarute. But it may be healthy for some reason. Just talk to some toddler, it may wident your view for a bit.', '639ced8d23b7b6.03425100.png', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -225,7 +226,7 @@ ALTER TABLE `vehicle_category`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `article_category`
