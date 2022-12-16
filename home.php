@@ -14,7 +14,7 @@
   include('logics/connect.php');
   include 'logics/auth-check.php';
 
-  $sql_article = 'SELECT * FROM article';
+  $sql_article = 'SELECT * FROM article LIMIT 5';
   $result_article = $conn->query($sql_article);
 
   $sql_user = 'SELECT * FROM user';
@@ -84,7 +84,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="blog.html">
+        <a class="nav-link collapsed" href="blog.php">
           <i class="bi bi-grid"></i>
           <span>News</span>
         </a>
@@ -370,7 +370,7 @@
                 ?>
 
                   <div class="post-item clearfix">
-                    <img src="assets/img/news-1.jpg" alt="">
+                    <img src="assets/img/hero/blog/<?= $row['img_url'] ?>" alt="">
                     <h4><a href="#"><?= $row['title'] ?></a></h4>
                     <p></p>
                     <!-- <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p> -->

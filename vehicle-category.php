@@ -68,7 +68,7 @@ if (strcmp($auth_role, "admin") == 0) {
   <li class="nav-heading">Pages</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="blog.html">
+    <a class="nav-link collapsed" href="blog.php">
       <i class="bi bi-grid"></i>
       <span>News</span>
     </a>
