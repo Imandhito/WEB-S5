@@ -9,56 +9,25 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/nice-style.css" rel="stylesheet">
-
+    <?php include("layout-head-import-nice.php"); ?>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- =======================================================
-  * Template Name: NiceAdmin - v2.4.0
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
     <?php include 'logics/connect.php';
-    $sql = $_GET['sql'];
-    $result = $conn->query($sql);
+    include 'logics/auth-check.php';
 
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-        header("location:login.php");
-    }
-
-    $sqli = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-    $results = $conn->query($sqli);
-    $data = $results->fetch_object();
-
-    if (strcmp($data->role, "user") == 0) {
+    if (strcmp($auth_role, "user") == 0) {
         header("location:home.php");
     }
+
+    $a = $_GET['sql'];
+    $result = $conn->query("SELECT * FROM user WHERE name LIKE '%$a%' OR email LIKE '%$a%' OR phone LIKE '%$a%'");
     ?>
 
 
 </head>
+
 <body class="toggle-sidebar">
 
     <!-- End Header -->
@@ -67,14 +36,19 @@
     <!-- End Sidebar-->
 
     <main id="main" class="main">
-    
-        <div class="pagetitle">
-        <div class="d-flex align-items-center justify-content-between">
 
-<a href="home.php" class="logo d-flex align-items-center">
-    <span class="d-none d-lg-block">RoamRent.</span>
-</a>
-</div><!-- End Logo -->
+        <div class="pagetitle">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <div class="d-flex align-items-center justify-content-between">
+
+                    <h1>
+                        <span href="home.php" class="logo d-flex align-items-center">
+                            RoamRent.
+                        </span>
+                    </h1>
+                </div><!-- End Logo -->
+            </div><!-- End Logo -->
         </div><!-- End Page Title -->
         <section class="section">
             <div class="row align-items-top">
@@ -114,7 +88,8 @@
                                                 <?= $row["phone"] ?>
                                             </td>
                                         </tr>
-                                    <?php $i++; } ?>
+                                    <?php $i++;
+                                    } ?>
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->

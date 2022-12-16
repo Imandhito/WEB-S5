@@ -9,99 +9,112 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  
+
 
   <?php include 'logics/connect.php';
   include('layout-head-import-nice.php');
   include 'logics/auth-check.php';
 
-  if (!empty($_POST)){
-    $sql = 'SELECT * FROM user WHERE name LIKE "%'.$_POST["live_search"].'%" OR email LIKE "%'.$_POST["live_search"].'%" OR phone LIKE "%'.$_POST["live_search"].'%"';
-  $result = $conn->query($sql);
+  $batas = 4;
+  $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+  $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+
+  $previous = $halaman - 1;
+  $next = $halaman + 1;
+
+  if (!empty($_GET)) {
+    $a = $_GET["search"];
+    $sql = "SELECT * FROM user WHERE name LIKE '%$a%' OR email LIKE '%$a%' OR phone LIKE '%$a%' LIMIT $halaman_awal, $batas";
+    $result = $conn->query($sql);
   } else {
-    $sql = 'SELECT * FROM user';
+    $a = '';
+    $sql = "SELECT * FROM user LIMIT $halaman_awal, $batas";
     $result = $conn->query($sql);
   }
 
-  $sqli = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-  $results = $conn->query($sqli);
-  $data = $results->fetch_object();
+  $data = $conn->query("SELECT * FROM user WHERE name LIKE '%$a%' OR email LIKE '%$a%' OR phone LIKE '%$a%'");
+  $jumlah_data = mysqli_num_rows($data);
+  $total_halaman = ceil($jumlah_data / $batas);
 
-  if (strcmp($data->role, "user") == 0) {
+  $nomor = $halaman_awal + 1;
+
+  if (strcmp($auth_role, "user") == 0) {
     header("location:home.php");
   }
   ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
-<!-- ======= Header ======= -->
-<?php include 'layout-header-nice.php'; ?>
+  <!-- ======= Header ======= -->
+  <?php include 'layout-header-nice.php'; ?>
   <!-- End Header -->
 
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link " href="home.php">
-      <i class="bi bi-grid"></i>
-      <span>Home</span>
-    </a>
-  </li><!-- End Home Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="home.php">
+          <i class="bi bi-grid"></i>
+          <span>Home</span>
+        </a>
+      </li><!-- End Home Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="vehicle.php">
-      <i class="bi bi-menu-button-wide"></i>
-      <span>Vehicles</span>
-    </a>
-  </li><!-- End Vehicles Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="vehicle.php">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Vehicles</span>
+        </a>
+      </li><!-- End Vehicles Nav -->
 
-  <?php
-if (strcmp($auth_role, "admin") == 0) {
-?>
-<li class="nav-item">
-    <a class="nav-link collapsed" href="vehicle-category.php">
-      <i class="bi bi-menu-button-wide"></i>
-      <span>Vehicles Category</span>
-    </a>
-  </li><!-- End Vehicles Nav -->
-<?php
-}
-?>
-  
+      <?php
+      if (strcmp($auth_role, "admin") == 0) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="vehicle-category.php">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Vehicles Category</span>
+          </a>
+        </li><!-- End Vehicles Nav -->
+      <?php
+      }
+      ?>
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="users.php">
-      <i class="bi bi-person"></i>
-      <span>Users</span>
-    </a>
-  </li><!-- End Users Nav -->
 
-  <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users.php">
+          <i class="bi bi-person"></i>
+          <span>Users</span>
+        </a>
+      </li><!-- End Users Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="blog.php">
-      <i class="bi bi-grid"></i>
-      <span>News</span>
-    </a>
-  </li><!-- End News Nav -->
+      <li class="nav-heading">Pages</li>
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="blog-category.php">
-      <i class="bi bi-grid"></i>
-      <span>Category</span>
-    </a>
-  </li><!-- End News Nav -->
-</ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog.php">
+          <i class="bi bi-grid"></i>
+          <span>News</span>
+        </a>
+      </li><!-- End News Nav -->
 
-</aside>
-<!-- End Sidebar-->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog-category.php">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End News Nav -->
+    </ul>
+
+  </aside>
+  <!-- End Sidebar-->
+
+
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -120,36 +133,37 @@ if (strcmp($auth_role, "admin") == 0) {
             <div class="card-body">
               <h5 class="card-title">List users</h5>
 
-              <div class="row">
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <div class="row col-12 mb-5">
-                  
+              <div class="row mb-3">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
+                  <div class="row col-12 mb-2">
 
-                  
-                <div class="col">
-                  <input type="text" id="live_search" name="live_search" placeholder="Search" class="form-control" title="Enter search keyword">
-                </div>
-                <div class="col-2 d-flex justify-content-end align-items-center">
-                  <button type="submit" class="btn btn-primary">Search</button>
-                </div>
+                    <div class="col">
+                      <input type="text" id="live_search" name="search" placeholder="Search" class="form-control" title="Enter search keyword">
+                    </div>
+                    <div class="col-1 d-flex justify-content-end align-items-center">
+                      <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
 
-                
-                </div>
+
+                  </div>
                 </form>
-                
-                <div class="col-6">
-                  <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
+
+                <div class="row col-12">
+                  <div class="col-6">
+                    <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
+                  </div>
+                  <div class="col-6 d-flex justify-content-end">
+                    <a href='user-print.php?sql=<?= $a ?>'><button class="btn btn-info">Print</button></a>
+                  </div>
                 </div>
-                <div class="col-6 d-flex justify-content-end">
-                  <a href='user-print.php?sql=<?= $sql ?>'><button class="btn btn-info">Print</button></a>
-                </div>
+
               </div>
               <div id="table-data">
-              <!-- Default Table -->
+                <!-- Default Table -->
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Id</th>
+                      <th scope="col">No.</th>
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
@@ -161,8 +175,7 @@ if (strcmp($auth_role, "admin") == 0) {
                     <?php while ($row = $result->fetch_assoc()) { ?>
                       <tr>
                         <td>
-                          <a href="users-profile.php?id='<?= $row["id"] ?>'"> <?= $row["id"] ?> </a>
-                          <br>
+                          <?= $nomor ?>
                         </td>
                         <td>
                           <?= $row["name"] ?>
@@ -179,11 +192,42 @@ if (strcmp($auth_role, "admin") == 0) {
                           <!-- <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button> -->
                         </td>
                       </tr>
-                    <?php } ?>
+                    <?php $nomor++;
+                    } ?>
                   </tbody>
                 </table>
               </div>
               <!-- End Default Table Example -->
+
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item <?php if ($halaman <= 1) {
+                                          echo "disabled";
+                                        } ?>">
+                    <a class="page-link" <?php if ($halaman > 1) {
+                                            echo "href='?halaman=$previous&search=$a'";
+                                          } else {
+                                            echo "aria-disabled='true'";
+                                          } ?> tabindex="-1">Previous</a>
+                  </li>
+                  <?php
+                  for ($x = 1; $x <= $total_halaman; $x++) {
+                    $current_page = $halaman == $x
+                  ?>
+                    <li class="page-item <?= $current_page ? "active" : "" ?>" <?= $current_page ? 'aria-current="page"' : '' ?>><a class="page-link" href="?halaman=<?= $x ?>&search=<?= $a ?>"><?php echo $x; ?></a></li>
+                  <?php
+                  }
+                  ?>
+                  <li class="page-item <?php if ($halaman >=  $total_halaman) {
+                                          echo "disabled";
+                                        } ?>">
+                    <a class="page-link" <?php if ($halaman < $total_halaman) {
+                                            echo "href='?halaman=$next&search=$a'";
+                                          } ?>>Next</a>
+                  </li>
+                </ul>
+              </nav><!-- End Disabled and active states -->
+
             </div>
           </div>
 
@@ -211,7 +255,7 @@ if (strcmp($auth_role, "admin") == 0) {
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  
+
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
@@ -219,14 +263,16 @@ if (strcmp($auth_role, "admin") == 0) {
 
 
   <script type="text/javascript">
-     $(document).ready(function(){
-      $("#live_search").keyup(fucntion(){
+    $(document).ready(function() {
+      $("#live_search").keyup(fucntion() {
         var search = $(this).val();
         $.ajax({
-          url:'livesearch.php',
-          method:'post',
-          data:{query:search},
-          success:function(response){
+          url: 'livesearch.php',
+          method: 'post',
+          data: {
+            query: search
+          },
+          success: function(response) {
             $("$table-data").html(response);
           }
         })
@@ -279,7 +325,6 @@ if (strcmp($auth_role, "admin") == 0) {
     //   });
 
     // }
-   
   </script>
 </body>
 

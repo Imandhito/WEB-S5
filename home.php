@@ -17,9 +17,21 @@
   $sql_article = 'SELECT * FROM article LIMIT 5';
   $result_article = $conn->query($sql_article);
 
-  $sql_user = 'SELECT * FROM user';
+  $sql_count_article = "SELECT COUNT(id) as total FROM article";
+  $result_count_article = $conn->query($sql_count_article);
+  $data_count_article = $result_count_article->fetch_object();
+
+  $sql_user = 'SELECT COUNT(id) as total FROM user';
   $result_user = $conn->query($sql_user);
-  $data = $result_user->fetch_object();
+  $data_count_user = $result_user->fetch_object();
+
+  $sql_vehicle = 'SELECT COUNT(id) as total FROM vehicle WHERE is_borrow = 1';
+  $result_vehicle = $conn->query($sql_vehicle);
+  $data_count_vehicle = $result_vehicle->fetch_object();
+
+  $sql_vehicle = 'SELECT vc.id, COUNT(v.id) as total, vc.name as category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.is_borrow = 0 GROUP BY category ORDER BY vc.id';
+  $result_category = $conn->query($sql_category_vehicle);
+
   ?>
 
 </head>
@@ -29,17 +41,6 @@
   <!-- ======= Header ======= -->
   <?php include 'layout-header-nice.php'; ?>
   <!-- End Header -->
-
-
-  <!-- ======= Sidebar ======= -->
-  <?php
-  /* if (strcmp($data->role, "admin") == 0) {
-    include('layout-sidebar-admin.php');
-  } else {
-    include('layout-sidebar.php');
-  } */
-  ?>
-  <!-- End Sidebar-->
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
@@ -139,7 +140,7 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1</h6>
+                    <h6><?= $data_count_vehicle->total ?></h6>
                       <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
                     </div>
                   </div>
@@ -209,13 +210,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <?php echo ('<h6>');
-                      $count_user = 1;
-                      while ($row_user = $result_user->fetch_assoc()) {
-                        $count_user = $count_user + 1;
-                      }
-                      echo ($count_user . ' User Account');
-                      echo ('<h6>') ?>
+                      <h6><?= $data_count_user->total ?> User Account</h6>
                     </div>
                   </div>
                   <a href="users.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>
@@ -250,19 +245,87 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <?php echo ('<h6>');
-                      $count2 = 0;
-                      while ($row_article = $result_article->fetch_assoc()) {
-                        $count2 = $count2 + 1;
-                      }
-                      echo ($count2 . ' Article Published');
-                      echo ('<h6>') ?>
+                      <h6><?= $data_count_article->total ?> Article Published</h6>
                     </div>
                   </div>
                   <a href="blog.php"><button class="btn btn-outline-info alert-delete-confirm">Details</button></a>
                 </div>
               </div>
             </div><!-- End Article Card -->
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Status Vehicle <span>/Today</span></h5>
+
+                  <!-- Line Chart -->
+                  <div id="reportsChart"></div>
+                  <!-- Vertical Bar Chart -->
+              <div id="chart_status_vehicle" style="min-height: 400px;" class="echart"></div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  echarts.init(document.querySelector("#chart_status_vehicle")).setOption({
+                    title: {
+                      text: 'Status Vehicle'
+                    },
+                    tooltip: {
+                      trigger: 'axis',
+                      axisPointer: {
+                        type: 'shadow'
+                      }
+                    },
+                    legend: {},
+                    grid: {
+                      left: '3%',
+                      right: '4%',
+                      bottom: '3%',
+                      containLabel: true
+                    },
+                    xAxis: {
+                      type: 'value',
+                      boundaryGap: [0, 0.01]
+                    },
+                    yAxis: {
+                      type: 'category',
+                      data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+                    },
+                    series: [{
+                        name: '2011',
+                        type: 'bar',
+                        data: [18203, 23489, 29034, 104970, 131744, 630230]
+                      },
+                      {
+                        name: '2012',
+                        type: 'bar',
+                        data: [19325, 23438, 31000, 121594, 134141, 681807]
+                      }
+                    ]
+                  });
+                });
+              </script>
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div>
+            <!-- End Reports -->
 
           </div>
         </div><!-- End Left side columns -->

@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) { // Check auth
     $auth_job = $_SESSION['job'];
     $auth_role = $_SESSION['role'];
 }
-
+ 
 
 
 /* $sql_user = 'SELECT * FROM user';

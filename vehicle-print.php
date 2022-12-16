@@ -9,44 +9,27 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/nice-style.css" rel="stylesheet">
-
+    <?php include("layout-head-import-nice.php"); ?>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- =======================================================
-  * Template Name: NiceAdmin - v2.4.0
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
     <?php include 'logics/connect.php';
+    include 'logics/auth-check.php';
+
+    if (strcmp($auth_role, "user") == 0) {
+        header("location:home.php");
+    }
+
     $a = $_GET['sql'];
-    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v LEFT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.name LIKE "%'.$a.'%"';
+    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v LEFT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.name LIKE "%' . $a . '%"';
     $result = $conn->query($sql);
     ?>
 
 
 </head>
+
 <body class="toggle-sidebar">
 
     <!-- End Header -->
@@ -55,14 +38,16 @@
     <!-- End Sidebar-->
 
     <main id="main" class="main">
-    
-        <div class="pagetitle">
-        <div class="d-flex align-items-center justify-content-between">
 
-<a href="home.php" class="logo d-flex align-items-center">
-    <span class="d-none d-lg-block">RoamRent.</span>
-</a>
-</div><!-- End Logo -->
+        <div class="pagetitle">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <h1>
+                    <span href="home.php" class="logo d-flex align-items-center">
+                        RoamRent.
+                    </span>
+                </h1>
+            </div><!-- End Logo -->
         </div><!-- End Page Title -->
         <section class="section">
             <div class="row align-items-top">
@@ -72,33 +57,33 @@
                             <h5 class="card-title">Daftar Kendaraan</h5>
                             <!-- Default Table -->
                             <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Passanger</th>
-                                    <th scope="col">Is Being Borrowed</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 1;
-                                while ($row = $result->fetch_assoc()) {
-                                ?>
+                                <thead>
                                     <tr>
-                                        <th scope="row"><?= $i ?></th>
-                                        <td><?= $row['name'] ?></td>
-                                        <td><?= $row['vehicle_category'] ?></td>
-                                        <td><?= $row['price'] ?></td>
-                                        <td><?= $row['passanger'] ?></td>
-                                        <td><?= $row['is_borrow'] ?></td>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Passanger</th>
+                                        <th scope="col">Is Being Borrowed</th>
                                     </tr>
-                                <?php $i++;
-                                } ?>
-                            </tbody>
-                        </table><!-- End Default Table Example -->
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i = 1;
+                                    while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?= $i ?></th>
+                                            <td><?= $row['name'] ?></td>
+                                            <td><?= $row['vehicle_category'] ?></td>
+                                            <td><?= $row['price'] ?></td>
+                                            <td><?= $row['passanger'] ?></td>
+                                            <td><?= $row['is_borrow'] ?></td>
+                                        </tr>
+                                    <?php $i++;
+                                    } ?>
+                                </tbody>
+                            </table><!-- End Default Table Example -->
                         </div>
                     </div>
 
