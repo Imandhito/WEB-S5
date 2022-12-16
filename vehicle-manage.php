@@ -48,7 +48,7 @@
 if (strcmp($auth_role, "admin") == 0) {
 ?>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="vehicle=category.php">
+    <a class="nav-link collapsed" href="vehicle-category.php">
       <i class="bi bi-menu-button-wide"></i>
       <span>Vehicles Category</span>
     </a>
@@ -131,6 +131,8 @@ if (strcmp($auth_role, "admin") == 0) {
                                         <td><?= $row['passanger'] ?></td>
                                         <td><?= $row['is_borrow'] ?></td>
                                         <td>
+                                            <a href="vehicle-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
+                                            <a href="logics/vehicle-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
                                         </td>
                                     </tr>
                                 <?php $i++;

@@ -48,7 +48,7 @@
   if (strcmp($auth_role, "admin") == 0) {
     ?>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle=category.php">
+        <a class="nav-link collapsed" href="vehicle-category.php">
           <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles Category</span>
         </a>

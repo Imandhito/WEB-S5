@@ -16,7 +16,7 @@
 
     $id=$_GET['id'];
 
-    $sql = 'SELECT * FROM vehicle_category WHERE id = ' . $temp_id;
+    $sql = 'SELECT * FROM vehicle_category WHERE id = ' . $id;
     $result = $conn->query($sql);
     $value = $result->fetch_object();
     ?>
@@ -50,7 +50,7 @@
 if (strcmp($auth_role, "admin") == 0) {
 ?>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="vehicle=category.php">
+    <a class="nav-link collapsed" href="vehicle-category.php">
       <i class="bi bi-menu-button-wide"></i>
       <span>Vehicles Category</span>
     </a>
@@ -107,6 +107,7 @@ if (strcmp($auth_role, "admin") == 0) {
                   <label for="name" class="form-label">Nama</label>
                   <input type="text" class="form-control" id="name" placeholder="Category Name" name="name" value="<?= $value->name ?>">
                 </div>
+                <input name="id_category" type="hidden" value="<?= $value->id ?>" />
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>

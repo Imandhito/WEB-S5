@@ -13,9 +13,6 @@
     include("layout-head-import-nice.php");
     include 'logics/connect.php';
     include 'logics/auth-check.php';
-
-    $sql = 'SELECT * FROM vehicle_category';
-    $result = $conn->query($sql);
     ?>
 </head>
 
@@ -24,9 +21,8 @@
     <!-- ======= Header ======= -->
     <?php include 'layout-header-nice.php'; ?>
     <!-- End Header -->
-
-    <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
 
 <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -78,19 +74,18 @@ if (strcmp($auth_role, "admin") == 0) {
 
 </aside>
 <!-- End Sidebar-->
-
     <main id="main" class="main">
 
         <div class="pagetitle">
             <div class="row">
                 <div class="col">
-                    <h1>Daftar Kendaraan</h1>
+                    <h1>Add Vehicle Category</h1>
                     <nav>
-                        <p>Berbagai kendaraan pilihan dari kami</p>
+                        <p>Berbagai kategori kendaraan dapat dibuat di sini</p>
                     </nav>
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle-category-add.php" class="btn btn-primary">Add</a>
+                    <a href="vehicle.php" class="btn btn-primary">Add</a>
                 </div>
             </div>
         </div><!-- End Page Title -->
@@ -98,35 +93,20 @@ if (strcmp($auth_role, "admin") == 0) {
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Manage Vehicle</h5>
+                        <h5 class="card-title">Manage Cateogory</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
-                        <!-- Default Table -->
-                        <table class="table col">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 1;
-                                while ($row = $result->fetch_assoc()) {
-                                ?>
-                                    <tr>
-                                        <th scope="row"><?= $i ?></th>
-                                        <td><?= $row['name'] ?></td>
-                                        <td>
-                                            <a href="vehicle-category-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                                            <a href="logics/vehicle-category-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
-                                        </td>
-                                    </tr>
-                                <?php $i++;
-                                } ?>
-                            </tbody>
-                        </table>
-                        <!-- End Default Table Example -->
+                        <!-- Vertical Form -->
+              <form class="row g-3" action="logics/vehicle-edit.php">
+                <div class="col-12">
+                  <label for="name" class="form-label">Nama</label>
+                  <input type="text" class="form-control" id="name" placeholder="Category Name" name="name">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- Vertical Form -->
+
                     </div>
                 </div>
             </div>

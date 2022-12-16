@@ -1,9 +1,6 @@
 <?php
-include_once 'connect.php';
 
-/* $target_file = $target_dir . basename($_FILES["image"]["name"]);
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); */
-
+include 'connect.php';
 
 
 
@@ -85,33 +82,11 @@ try {
 }
 
 
-
-
-
-
-
-
-
-
-$name = $_POST["name"];
+$id = $_POST['id_vehicle'];
 $image = $filename;
-$passanger = $_POST["passanger"];
-$price = $_POST["price"];
-$description = $_POST["description"];
-$category = $_POST["category"];
-$sql = "INSERT INTO vehicle(name, img_url, passanger,price,description,vehicle_category_id) VALUES ('" . $name . "', '" . $image . "', '" . $passanger . "', '" . $price . "','" . $description . "','" . $category . "')";
 
-if ($conn->query($sql)) {
-    header('location: ../vehicle-manage.php');
-} else {
-    echo "Error :" . $conn->error;
-}
+    $sql = "UPDATE vehicle SET img_url='" . $image . "'  WHERE id =" . $id;
 
+    $conn->query($sql);
 
-// Check if $uploadOk is set to 0 by an error
-/* if (move_uploaded_file($tempname, $path)) {
-    echo "Successfully uploaded";
-} else {
-    echo "Sorry, there was an error uploading your file.";
-}
- */
+    header("location: ../vehicle-manage.php");
