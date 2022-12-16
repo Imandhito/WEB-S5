@@ -102,11 +102,12 @@ if (strcmp($auth_role, "admin") == 0) {
                         <h5 class="card-title">Manage Cateogory</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
                         <!-- Vertical Form -->
-              <form class="row g-3" action="logics/vehicle-edit.php">
+              <form class="row g-3" action="logics/vehicle-category-edit.php" method="POST">
                 <div class="col-12">
                   <label for="name" class="form-label">Nama</label>
                   <input type="text" class="form-control" id="name" placeholder="Category Name" name="name" value="<?= $value->name ?>">
                 </div>
+                <!-- HIDDEN ID -->
                 <input name="id_category" type="hidden" value="<?= $value->id ?>" />
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
