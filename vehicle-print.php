@@ -40,21 +40,9 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
     <?php include 'logics/connect.php';
-    $sql = $_GET['sql'];
+    $a = $_GET['sql'];
+    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v LEFT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.name LIKE "%'.$a.'%"';
     $result = $conn->query($sql);
-
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-        header("location:login.php");
-    }
-
-    $sqli = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-    $results = $conn->query($sqli);
-    $data = $results->fetch_object();
-
-    if (strcmp($data->role, "user") == 0) {
-        header("location:home.php");
-    }
     ?>
 
 
@@ -81,43 +69,36 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Daftar pengguna</h5>
+                            <h5 class="card-title">Daftar Kendaraan</h5>
                             <!-- Default Table -->
                             <table class="table">
-                                <thead>
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Passanger</th>
+                                    <th scope="col">Is Being Borrowed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $i = 1;
+                                while ($row = $result->fetch_assoc()) {
+                                ?>
                                     <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Phone</th>
+                                        <th scope="row"><?= $i ?></th>
+                                        <td><?= $row['name'] ?></td>
+                                        <td><?= $row['vehicle_category'] ?></td>
+                                        <td><?= $row['price'] ?></td>
+                                        <td><?= $row['passanger'] ?></td>
+                                        <td><?= $row['is_borrow'] ?></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-
-                                    <?php $i = 1;
-                                    while ($row = $result->fetch_assoc()) { ?>
-                                        <tr>
-                                            <!-- <td>
-                                                <a href="users-profile.php?id='<?= $row["id"] ?>'"> <?= $row["id"] ?> </a>
-                                                <br>
-                                            </td> -->
-                                            <td>
-                                                <?= $i ?>
-                                            </td>
-                                            <td>
-                                                <?= $row["name"] ?>
-                                            </td>
-                                            <td>
-                                                <?= $row["email"] ?>
-                                            </td>
-                                            <td>
-                                                <?= $row["phone"] ?>
-                                            </td>
-                                        </tr>
-                                    <?php $i++; } ?>
-                                </tbody>
-                            </table>
-                            <!-- End Default Table Example -->
+                                <?php $i++;
+                                } ?>
+                            </tbody>
+                        </table><!-- End Default Table Example -->
                         </div>
                     </div>
 

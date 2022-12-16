@@ -15,10 +15,12 @@
   include 'logics/auth-check.php';
 
   if (!empty($_POST)){
-    $sql = 'SELECT * FROM vehicle WHERE name LIKE "%'.$_POST["search"].'%"';
+    $a = $_POST["search"];
+    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v LEFT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.name LIKE "%'.$a.'%"';
   $result = $conn->query($sql);
   } else {
-    $sql = 'SELECT * FROM vehicle';
+    $a = '';
+    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v LEFT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id';
     $result = $conn->query($sql);
   }
 
@@ -127,6 +129,7 @@
     <section class="section">
       <div class="row align-items-top">
         <div class="col">
+        <a href='vehicle-print.php?sql=<?= $a ?>'><button class="btn btn-info">Print</button></a>
 
           <?php
           while ($row = $result->fetch_assoc()) {

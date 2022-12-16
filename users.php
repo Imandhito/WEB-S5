@@ -141,7 +141,7 @@ if (strcmp($auth_role, "admin") == 0) {
                   <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
-                  <a href="user-print.php"><button class="btn btn-info">Print</button></a>
+                  <a href='user-print.php?sql=<?= $sql ?>'><button class="btn btn-info">Print</button></a>
                 </div>
               </div>
               <div id="table-data">
