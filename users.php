@@ -92,6 +92,12 @@ if (strcmp($auth_role, "admin") == 0) {
     </a>
   </li><!-- End News Nav -->
 
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="blog-category.php">
+      <i class="bi bi-grid"></i>
+      <span>Category</span>
+    </a>
+  </li><!-- End News Nav -->
 </ul>
 
 </aside>

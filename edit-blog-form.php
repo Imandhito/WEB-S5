@@ -107,13 +107,13 @@
               <h5 class="card-title">Change Article Photo</h5>
 
               <!-- Vertical Form -->
-              <form method="post" action="logics/vehicle-edit-photo.php" enctype="multipart/form-data">
+              <form method="post" action="logics/blog-edit-photo.php" enctype="multipart/form-data">
                 <form class="row g-3">
                   <div class="col-12">
                     <label for="inputImage" class="form-label">Photo</label>
                     <input type="file" name="image" class="form-control" id="inputImage">
                   </div>
-                  <input name="id_vehicle" type="hidden" value="<?= $data->id ?>" />
+                    <input name="id_article" type="hidden" value="<?= $data->id ?>" />
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary" style="margin-top:10px;">Submit</button>
                   </div>
@@ -126,33 +126,25 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Edit Vehicle</h5>
+              <h5 class="card-title">Edit Article</h5>
 
               <!-- Vertical Form -->
-              <form method="post" action="logics/vehicle-edit.php" enctype="multipart/form-data">
+              <form method="post" action="logics/blog-edit.php" enctype="multipart/form-data">
                 <form class="row g-3">
                   <div class="col-12">
-                    <label for="inputName" class="form-label">Vehicle Name</label>
-                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Name" value="<?= $data->name ?>">
+                    <label for="inputTitle" class="form-label">Article Title</label>
+                    <input type="text" name="title" class="form-control" id="inputTitle" placeholder="Title" value="<?= $data->title ?>">
                   </div>
                   <div class="col-12">
-                    <label for="inputAddress" class="form-label">Passanger Capacity</label>
-                    <input type="text" name="passanger" class="form-control" id="inputAddress" value="<?= $data->passanger ?>">
+                    <label for="inputText" class="form-label">Article Text</label>
+                    <input type="text" name="text" class="form-control" id="inputText" placeholder="Text" value="<?= $data->text ?>">
                   </div>
+                    <input name="id_article" type="hidden" value="<?= $data->id ?>" />
                   <div class="col-12">
-                    <label for="inputPrice" class="form-label">Price</label>
-                    <input type="text" name="price" class="form-control" id="inputPrice" value="<?= $data->price ?>">
-                  </div>
-                  <div class="col-12">
-                    <label for="inputCountry" class="form-label">Description</label>
-                    <input type="text" name="description" class="form-control" id="inputDescription" value="<?= $data->description ?>">
-                  </div>
-                  <input name="id_vehicle" type="hidden" value="<?= $data->id ?>" />
-                  <div class="col-12">
-                    <label for="inputCountry" class="form-label">Vehicle Category</label>
+                    <label for="inputCategory" class="form-label">Article Category</label>
                     <select id="inputState" class="form-select" name="category">
                         <?php while ($row = $result_category->fetch_assoc()) { ?>
-                        <option value="<?= $row['id'] ?>" <?php if ($data->vehicle_category_id == $row['id']) {
+                        <option value="<?= $row['id'] ?>" <?php if ($data->article_category_id == $row['id']) {
                                 echo "selected";
                             } ?>><?= $row['name'] ?></option>
                         <?php } ?>

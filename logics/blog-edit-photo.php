@@ -82,11 +82,11 @@ try {
 }
 
 
-$id = $_POST['id_vehicle'];
+$id = $_POST['id_article'];
 $image = $filename;
 
-    $sql = "UPDATE vehicle SET img_url='" . $image . "'  WHERE id =" . $id;
+    $sql = "UPDATE article SET img_url='" . $image . "'  WHERE id =" . $id;
 
     $conn->query($sql);
 
-    header("location: ../vehicle-manage.php");
+    header("location: ../blog.php");
