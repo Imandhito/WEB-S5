@@ -14,7 +14,7 @@
     include 'logics/connect.php';
     include 'logics/auth-check.php';
 
-    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id';
+    $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v LEFT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id';
     $result = $conn->query($sql);
     ?>
 </head>

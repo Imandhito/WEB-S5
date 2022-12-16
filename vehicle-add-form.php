@@ -17,6 +17,9 @@
   $sql = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
   $result = $conn->query($sql);
   $data = $result->fetch_object();
+
+  $sql_category = 'SELECT * FROM vehicle_category';
+    $result_category = $conn->query($sql_category);
   ?>
 </head>
 
@@ -126,7 +129,11 @@
                   </div>
                   <div class="col-12">
                     <label for="inputCountry" class="form-label">Vehicle Category</label>
-                    <input type="text" name="category" class="form-control" id="inputCategory">
+                    <select id="inputState" class="form-select" name="category">
+                        <?php while ($row = $result_category->fetch_assoc()) { ?>
+                        <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                        <?php } ?>
+                    </select>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary" style="margin-top:10px;">Add</button>
