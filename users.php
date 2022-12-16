@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Cards - NiceAdmin Bootstrap Template</title>
+  <title>Users - RoamRent</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -16,7 +16,7 @@
   include 'logics/auth-check.php';
 
   if (!empty($_POST)){
-    $sql = 'SELECT * FROM user WHERE name LIKE "%'.$_POST["live_search"].'%"';
+    $sql = 'SELECT * FROM user WHERE name OR email OR phone LIKE "%'.$_POST["live_search"].'%"';
   $result = $conn->query($sql);
   } else {
     $sql = 'SELECT * FROM user';
