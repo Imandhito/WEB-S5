@@ -13,8 +13,9 @@
   <?php include 'logics/connect.php';
   include('layout-head-import-nice.php');
   include 'logics/auth-check.php';
+  
   $temp_id = $_SESSION['user_id'];
-  $sql = "SELECT * FROM user WHERE id = " . $temp_id;
+  $sql = "SELECT * FROM user WHERE id = " . $auth_id;
   $result = $conn->query($sql);
   $value = $result->fetch_object();
   ?>
@@ -32,7 +33,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
@@ -93,7 +94,6 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
           <li class="breadcrumb-item active">Profile</li>
         </ol>
       </nav>

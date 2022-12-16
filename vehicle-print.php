@@ -37,7 +37,7 @@
     <!-- ======= Sidebar ======= -->
     <!-- End Sidebar-->
 
-    <main id="main" class="main">
+    <main id="main" class="main" style="margin-top:0px;">
 
         <div class="pagetitle">
             <div class="d-flex align-items-center justify-content-between">
@@ -78,7 +78,7 @@
                                             <td><?= $row['vehicle_category'] ?></td>
                                             <td><?= $row['price'] ?></td>
                                             <td><?= $row['passanger'] ?></td>
-                                            <td><?= $row['is_borrow'] ?></td>
+                                            <td><?= $row['is_borrow'] == 1 ? "Yes":"No" ?></td>
                                         </tr>
                                     <?php $i++;
                                     } ?>

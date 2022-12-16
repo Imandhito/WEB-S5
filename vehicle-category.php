@@ -38,7 +38,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
@@ -55,7 +55,7 @@
       if (strcmp($auth_role, "admin") == 0) {
       ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="vehicle-category.php">
+          <a class="nav-link" href="vehicle-category.php">
             <i class="bi bi-menu-button-wide"></i>
             <span>Vehicles Category</span>
           </a>
@@ -97,14 +97,17 @@
     <div class="pagetitle">
       <div class="row">
         <div class="col">
-          <h1>Daftar Kendaraan</h1>
+          <h1>Manage Vehicle Categories</h1>
           <nav>
-            <p>Berbagai kendaraan pilihan dari kami</p>
-          </nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+          <li class="breadcrumb-item active">Vehicle Category</li>
+        </ol>
+      </nav>
         </div>
 
-        <div class="col-2 d-flex justify-content-end align-items-center">
-          <a href="vehicle-category-add.php" class="btn btn-primary">Add</a>
+        <div class="col-1 d-flex justify-content-end align-items-center">
+          <a href="vehicle-category-add.php" class="btn btn-primary"><i class="ri-add-fill me-1"></i>Add</a>
         </div>
       </div>
     </div><!-- End Page Title -->
@@ -112,24 +115,9 @@
       <div class="row">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Manage Vehicle</h5>
+            <h5 class="card-title">List Categories</h5>
             <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
             <!-- Default Table -->
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-              <div class="row col-12 mb-5">
-
-
-
-                <div class="col">
-                  <input type="text" id="search" name="search" placeholder="Search" class="form-control" title="Enter search keyword">
-                </div>
-                <div class="col-2 d-flex justify-content-end align-items-center">
-                  <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-
-
-              </div>
-            </form>
             <table class="table col">
               <thead>
                 <tr>
@@ -147,8 +135,8 @@
                     <th scope="row"><?= $i ?></th>
                     <td><?= $row['name'] ?></td>
                     <td>
-                      <a href="vehicle-category-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                      <a href="logics/vehicle-category-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
+                      <a href="vehicle-category-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm"><i class="ri-edit-2-fill me-1"></i>Update</button></a>
+                      <a href="logics/vehicle-category-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm"><i class="ri-delete-bin-2-fill me-1"></i>Delete</button></a>
                     </td>
                   </tr>
                 <?php $i++;

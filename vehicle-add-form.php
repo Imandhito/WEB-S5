@@ -13,11 +13,7 @@
   include 'layout-head-import-nice.php';
   include('logics/connect.php');
   include 'logics/auth-check.php';
-
-  $sql = 'SELECT * FROM user WHERE id = ' . $_SESSION['user_id'];
-  $result = $conn->query($sql);
-  $data = $result->fetch_object();
-
+  
   $sql_category = 'SELECT * FROM vehicle_category';
     $result_category = $conn->query($sql_category);
   ?>
@@ -35,14 +31,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
       </li><!-- End Home Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle.php">
+        <a class="nav-link " href="vehicle.php">
           <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles</span>
         </a>
@@ -97,7 +93,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
           <li class="breadcrumb-item"><a href="home.php">Manage Vehicle</a></li>
-          <li class="breadcrumb-item active"><a href="vehicle.php">Add</a></li>
+          <li class="breadcrumb-item active">Add</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -112,7 +108,7 @@
 
               <!-- Vertical Form -->
               <form method="post" action="logics/vehicle-add.php" enctype="multipart/form-data">
-                <form class="row g-3">
+                <div class="row g-3">
                   <div class="col-12">
                     <label for="inputName" class="form-label">Vehicle Name</label>
                     <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
@@ -141,10 +137,10 @@
                         <?php } ?>
                     </select>
                   </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary" style="margin-top:10px;">Add</button>
+                  <div class="text-end">
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px;"><i class="bx bx-plus me-1"></i>Add</button>
                   </div>
-                </form>`
+                        </div>`
               </form><!-- Vertical Form -->
 
             </div>

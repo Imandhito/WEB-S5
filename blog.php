@@ -21,7 +21,7 @@
   $result_recent = $conn->query($sql_recent);
 
 
-  $batas = 2;
+  $batas = 6;
   $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
   $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
@@ -86,14 +86,14 @@
                     </div>
 
                     <h2 class="title">
-                      <a href="blog-details.html"><?= $row['title'] ?></a>
+                      <a href="blog-details.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a>
                     </h2>
 
                     <div class="meta-top">
                       <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html"><?= $row['author'] ?></a></li>
-                        <!-- <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li> -->
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php?id=<?= $row['id'] ?>"><?= $row['author'] ?></a></li>
+                        <!-- <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li> -->
                       </ul>
                     </div>
 
@@ -152,7 +152,8 @@
             <div class="sidebar">
 
               <div class="sidebar-item search-form">
-                <a href="add-blog-form.php" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Write New Article</a>
+                <a href="blog-add.php" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Write New Article</a>
+                <a href="blog-print.php?sql=<?= $a ?>" class="btn btn-secondary"><i class="bi bi-printer-fill me-1"></i> Print</a>
               </div><!-- End add button-->
 
 

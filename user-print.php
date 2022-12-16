@@ -35,7 +35,7 @@
     <!-- ======= Sidebar ======= -->
     <!-- End Sidebar-->
 
-    <main id="main" class="main">
+    <main id="main" class="main" style="margin-top:0px;">
 
         <div class="pagetitle">
             <div class="d-flex align-items-center justify-content-between">

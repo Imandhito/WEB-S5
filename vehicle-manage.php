@@ -32,14 +32,14 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="home.php">
+    <a class="nav-link collapsed" href="home.php">
       <i class="bi bi-grid"></i>
       <span>Home</span>
     </a>
   </li><!-- End Home Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="vehicle.php">
+    <a class="nav-link " href="vehicle.php">
       <i class="bi bi-menu-button-wide"></i>
       <span>Vehicles</span>
     </a>
@@ -97,7 +97,7 @@
                     </nav>
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle.php" class="btn btn-primary">View</a>
+                    <a href="vehicle.php" class="btn btn-primary"><i class="ri-file-paper-2-line me-1"></i> View</a>
                 </div>
             </div>
         </div><!-- End Page Title -->
@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="col"><h5 class="card-title">Manage Vehicle</h5></div>
                             <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle-add-form.php" class="btn btn-primary">Add</a>
+                    <a href="vehicle-add-form.php" class="btn btn-primary"><i class="ri-add-fill me-1"></i>Add</a>
                 </div>
                         </div>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
@@ -138,8 +138,8 @@
                                         <td><?= $row['passanger'] ?></td>
                                         <td><?= $row['is_borrow'] ?></td>
                                         <td>
-                                            <a href="vehicle-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                                            <a href="logics/vehicle-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
+                                            <a href="vehicle-edit.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm"><i class="ri-edit-2-fill"></i></button></a>
+                                            <a href="logics/vehicle-delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm"><i class="ri-delete-bin-2-fill"></i></button></a>
                                         </td>
                                     </tr>
                                 <?php $i++;

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Components / Cards - NiceAdmin Bootstrap Template</title>
+    <title>News Edit Category - RoamRent</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -34,7 +34,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="home.php">
+    <a class="nav-link collapsed" href="home.php">
       <i class="bi bi-grid"></i>
       <span>Home</span>
     </a>
@@ -78,7 +78,7 @@
   </li><!-- End News Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="blog-category.php">
+    <a class="nav-link" href="blog-category.php">
       <i class="bi bi-grid"></i>
       <span>Category</span>
     </a>
@@ -93,13 +93,14 @@
         <div class="pagetitle">
             <div class="row">
                 <div class="col">
-                    <h1>Daftar Kategori Article</h1>
+                    <h1>Manage News Category</h1>
                     <nav>
-                        <p>Berbagai kategori Artikel dapat dibuat di sini</p>
-                    </nav>
-                </div>
-                <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="blog.php" class="btn btn-primary">Add</a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="blog-category.php">News Categories</a></li>
+          <li class="breadcrumb-item active">Edit</li>
+        </ol>
+      </nav>
                 </div>
             </div>
         </div><!-- End Page Title -->
@@ -107,7 +108,7 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Manage Cateogory</h5>
+                        <h5 class="card-title">Edit Category</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
                         <!-- Vertical Form -->
               <form class="row g-3" action="logics/blog-category-edit.php" method="POST">

@@ -51,14 +51,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
       </li><!-- End Home Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle.php">
+        <a class="nav-link " href="vehicle.php">
           <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles</span>
         </a>
@@ -118,9 +118,9 @@
         <?php
         if (strcmp($auth_role, "admin") == 0) {
         ?>
-          <div class="col-2 d-flex justify-content-end align-items-center">
-            <a href="vehicle-manage.php" class="btn btn-primary">Manage</a>
-            <a href='vehicle-print.php?sql=<?= $a ?>' class="btn btn-info ms-3">Print</a>
+          <div class="col-3 d-flex justify-content-end align-items-center">
+            <a href="vehicle-manage.php" class="btn btn-primary"><i class="ri-edit-box-fill me-1"></i> Manage</a>
+            <a href='vehicle-print.php?sql=<?= $a ?>' class="btn btn-secondary ms-3"><i class="bx bxs-report me-1"></i> Print</a>
           </div>
         <?php
         }
@@ -136,8 +136,8 @@
         <div class="col">
           <input type="text" id="search" name="search" placeholder="Search" class="form-control" title="Enter search keyword">
         </div>
-        <div class="col-1 d-flex justify-content-end align-items-center">
-          <button type="submit" class="btn btn-primary">Search</button>
+        <div class="col-2 d-flex justify-content-end align-items-center">
+          <button type="submit" class="btn btn-primary"><i class="ri-search-eye-line me-1"></i> Search</button>
         </div>
 
 

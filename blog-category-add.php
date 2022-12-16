@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Cards - NiceAdmin Bootstrap Template</title>
+  <title>News Add Category - RoamRent</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -22,78 +22,79 @@
   <?php include 'layout-header-nice.php'; ?>
   <!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+<ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="home.php">
-          <i class="bi bi-grid"></i>
-          <span>Home</span>
-        </a>
-      </li><!-- End Home Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="home.php">
+      <i class="bi bi-grid"></i>
+      <span>Home</span>
+    </a>
+  </li><!-- End Home Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle.php">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Vehicles</span>
-        </a>
-      </li><!-- End Vehicles Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="vehicle.php">
+      <i class="bi bi-menu-button-wide"></i>
+      <span>Vehicles</span>
+    </a>
+  </li><!-- End Vehicles Nav -->
 
-      <?php
-      if (strcmp($auth_role, "admin") == 0) {
-      ?>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="vehicle-category.php">
-            <i class="bi bi-menu-button-wide"></i>
-            <span>Vehicles Category</span>
-          </a>
-        </li><!-- End Vehicles Nav -->
-      <?php
-      }
-      ?>
+  <?php
+  if (strcmp($auth_role, "admin") == 0) {
+  ?>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="vehicle-category.php">
+        <i class="bi bi-menu-button-wide"></i>
+        <span>Vehicles Category</span>
+      </a>
+    </li><!-- End Vehicles Nav -->
+  <?php
+  }
+  ?>
 
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users.php">
-          <i class="bi bi-person"></i>
-          <span>Users</span>
-        </a>
-      </li><!-- End Users Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="users.php">
+      <i class="bi bi-person"></i>
+      <span>Users</span>
+    </a>
+  </li><!-- End Users Nav -->
 
-      <li class="nav-heading">Pages</li>
+  <li class="nav-heading">Pages</li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="blog.php">
-          <i class="bi bi-grid"></i>
-          <span>News</span>
-        </a>
-      </li><!-- End News Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="blog.php">
+      <i class="bi bi-grid"></i>
+      <span>News</span>
+    </a>
+  </li><!-- End News Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="blog-category.php">
-          <i class="bi bi-grid"></i>
-          <span>Category</span>
-        </a>
-      </li><!-- End News Nav -->
-    </ul>
+  <li class="nav-item">
+    <a class="nav-link" href="blog-category.php">
+      <i class="bi bi-grid"></i>
+      <span>Category</span>
+    </a>
+  </li><!-- End News Nav -->
+</ul>
 
-  </aside>
-  <!-- End Sidebar-->
+</aside>
+<!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
       <div class="row">
         <div class="col">
-          <h1>Add Article Category</h1>
+          <h1>Manage News Category</h1>
           <nav>
-            <p>Berbagai kategori kendaraan dapat dibuat di sini</p>
-          </nav>
-        </div>
-        <div class="col-2 d-flex justify-content-end align-items-center">
-          <a href="blog.php" class="btn btn-primary">Add</a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="blog-category.php">News Categories</a></li>
+          <li class="breadcrumb-item active">Add</li>
+        </ol>
+      </nav>
         </div>
       </div>
     </div><!-- End Page Title -->
@@ -101,7 +102,7 @@
       <div class="row">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Manage Category</h5>
+            <h5 class="card-title">Add Category</h5>
             <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
             <!-- Vertical Form -->
             <form class="row g-3" action="logics/blog-category-add.php" method="POST">

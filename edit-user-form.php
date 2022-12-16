@@ -74,7 +74,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
@@ -102,7 +102,7 @@
       
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users.php">
+        <a class="nav-link " href="users.php">
           <i class="bi bi-person"></i>
           <span>Users</span>
         </a>
@@ -130,7 +130,8 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-          <li class="breadcrumb-item active"><a href="users.php">Daftar Pengguna</a></li>
+          <li class="breadcrumb-item"><a href="users.php">Users</a></li>
+          <li class="breadcrumb-item active">Edit</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

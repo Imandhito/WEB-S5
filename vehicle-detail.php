@@ -32,14 +32,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
       </li><!-- End Home Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle.php">
+        <a class="nav-link " href="vehicle.php">
           <i class="bi bi-menu-button-wide"></i>
           <span>Vehicles</span>
         </a>

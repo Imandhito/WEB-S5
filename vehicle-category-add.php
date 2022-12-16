@@ -28,7 +28,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="home.php">
+    <a class="nav-link collapsed" href="home.php">
       <i class="bi bi-grid"></i>
       <span>Home</span>
     </a>
@@ -45,7 +45,7 @@
   if (strcmp($auth_role, "admin") == 0) {
   ?>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="vehicle-category.php">
+      <a class="nav-link " href="vehicle-category.php">
         <i class="bi bi-menu-button-wide"></i>
         <span>Vehicles Category</span>
       </a>
@@ -89,11 +89,12 @@
                 <div class="col">
                     <h1>Add Vehicle Category</h1>
                     <nav>
-                        <p>Berbagai kategori kendaraan dapat dibuat di sini</p>
-                    </nav>
-                </div>
-                <div class="col-2 d-flex justify-content-end align-items-center">
-                    <a href="vehicle.php" class="btn btn-primary">Add</a>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="vehicle-category.php">Vehicle Category</a></li>
+          <li class="breadcrumb-item active">Add</li>
+        </ol>
+      </nav>
                 </div>
             </div>
         </div><!-- End Page Title -->
@@ -101,7 +102,7 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Manage Cateogory</h5>
+                        <h5 class="card-title">Manage Category</h5>
                         <!-- <p>Highlight a table row or cell by adding a <code>.table-active</code> class.</p> -->
                         <!-- Vertical Form -->
               <form class="row g-3" action="logics/vehicle-category-add.php" method="POST">

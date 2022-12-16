@@ -60,7 +60,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="home.php">
+        <a class="nav-link collapsed" href="home.php">
           <i class="bi bi-grid"></i>
           <span>Home</span>
         </a>
@@ -88,7 +88,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users.php">
+        <a class="nav-link " href="users.php">
           <i class="bi bi-person"></i>
           <span>Users</span>
         </a>
@@ -118,11 +118,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Daftar pengguna</h1>
+      <h1>Manage Users</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-
+          <li class="breadcrumb-item active">Users</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -131,7 +131,7 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">List users</h5>
+              <h5 class="card-title">List</h5>
 
               <div class="row mb-3">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
@@ -140,8 +140,8 @@
                     <div class="col">
                       <input type="text" id="live_search" name="search" placeholder="Search" class="form-control" title="Enter search keyword">
                     </div>
-                    <div class="col-1 d-flex justify-content-end align-items-center">
-                      <button type="submit" class="btn btn-primary">Search</button>
+                    <div class="col-2 d-flex justify-content-end align-items-center">
+                      <button type="submit" class="btn btn-primary"><i class="ri-search-eye-line me-1"></i> Search</button>
                     </div>
 
 
@@ -150,10 +150,10 @@
 
                 <div class="row col-12">
                   <div class="col-6">
-                    <a href="add-user-form.php"><button class="btn btn-dark">Add user</button></a>
+                    <a href="add-user-form.php"><button class="btn btn-dark"><i class="ri-add-fill me-1"></i>Add user</button></a>
                   </div>
                   <div class="col-6 d-flex justify-content-end">
-                    <a href='user-print.php?sql=<?= $a ?>'><button class="btn btn-info">Print</button></a>
+                    <a href='user-print.php?sql=<?= $a ?>'><button class="btn btn-info"><i class="bx bxs-report me-1"></i> Print</button></a>
                   </div>
                 </div>
 
@@ -187,8 +187,8 @@
                           <?= $row["phone"] ?>
                         </td>
                         <td>
-                          <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm">Update</button></a>
-                          <a href="logics/delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm">Delete</button></a>
+                          <a href="edit-user-form.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-info alert-delete-confirm"><i class="ri-edit-2-fill"></i></button></a>
+                          <a href="logics/delete.php?id='<?= $row["id"] ?>'"><button class="btn btn-outline-danger alert-delete-confirm"><i class="ri-delete-bin-2-fill"></i></button></a>
                           <!-- <button onclick="deleteConfirm(<?= $row['id'] ?>)" class="btn btn-outline-danger alert-delete-confirm">Delete</button> -->
                         </td>
                       </tr>
