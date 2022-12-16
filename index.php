@@ -12,6 +12,7 @@
   <?php
   include_once 'logics/connect.php';
   include "layout-head-import-hero.php";
+  include_once 'logics/auth-with-guest-check.php';
   $sql_vehicle_category = 'SELECT * FROM vehicle_category';
   $sql = 'SELECT v.id,v.name,img_url,passanger,price,description,is_borrow,vc.name as vehicle_category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id LIMIT 20';
   $sql_article = "SELECT *, article.id as article_id FROM article INNER JOIN user ON article.user_id=user.id ORDER BY article.id DESC LIMIT 9";
@@ -48,8 +49,14 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
+      <?php if (!isset($_SESSION['user_id'])){?>
+        <a class="btn-getstarted scrollto" href="login.php">Login</a>
+      <?php }else{
+        ?>
+        <a class="btn-getstarted scrollto" href="home.php">Get Started</a>
+      <?php }
+      ?>
 
-      <a class="btn-getstarted scrollto" href="login.php">Login</a>
 
     </div>
   </header><!-- End Header -->

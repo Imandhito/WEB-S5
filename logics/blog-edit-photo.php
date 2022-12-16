@@ -11,7 +11,7 @@ $img_ex = pathinfo($filename, PATHINFO_EXTENSION);
 $img_ex_lc = strtolower($img_ex);
 
 $filename = uniqid('', true).'.'.$img_ex_lc;
-$path = "..assets/img/hero/blog/" . $filename;
+$path = "../assets/img/hero/blog/" . $filename;
 
 
 

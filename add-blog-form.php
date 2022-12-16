@@ -555,15 +555,13 @@
                     <label for="inputImageURL" class="form-label">Image URL</label>
                     <input type="text" name="image_url" class="form-control" id="inputImageURL" >
                     </div>
-                    <div class="form-group">
-                        <label for="inputTag">Tag (1=news, 2=Travel, 3=Life Hacks, 4-Promo):</label>
-                        <select class="form-control" name="tag" id="inputTag">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                        <br>                        
+                    <div class="col-12">
+                    <label for="inputCountry" class="form-label">Vehicle Category</label>
+                      <select id="inputState" class="form-select" name="category">
+                          <?php while ($row = $result_category->fetch_assoc()) { ?>
+                          <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                          <?php } ?>
+                      </select>
                     </div>
                     <div class="text-center">
                     <button type="submit" class="btn btn-primary">Create</button>
