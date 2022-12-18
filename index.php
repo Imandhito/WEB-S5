@@ -515,7 +515,7 @@
           <ul class="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
             <?php while ($row = $result_vehicle_category->fetch_assoc()) { ?>
-              <li data-filter=".filter-<?= $row['id'] ?>"><?= $row['name'] ?></li>
+              <li data-filter=".filter-<?= $row['name'] ?>"><?= $row['name'] ?></li>
             <?php } ?>
           </ul>
           <!-- End Portfolio Filters -->

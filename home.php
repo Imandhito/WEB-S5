@@ -38,6 +38,18 @@
   $sql_vehicle_borrow_count = 'SELECT vc.id, COUNT(v.id) as total, vc.name as category FROM vehicle v RIGHT JOIN vehicle_category vc ON v.vehicle_category_id = vc.id WHERE v.is_borrow = 1 GROUP BY category ORDER BY vc.id';
   $result_vehicle_borrow_count = $conn->query($sql_vehicle_borrow_count);
 
+  $sql_monthly_income = "SELECT created_at, date_format(created_at,'%b') as month, SUM(amount) as sale FROM `money` WHERE is_income = true GROUP BY month ORDER BY created_at";
+  $result_monthly_income = $conn->query($sql_monthly_income);
+
+  $sql_monthly_spending = "SELECT created_at, date_format(created_at,'%b') as month, SUM(amount) as sale FROM `money` WHERE is_income = false GROUP BY month ORDER BY created_at";
+  $result_monthly_spending = $conn->query($sql_monthly_spending);
+
+  $sql_monthly = "SELECT created_at, date_format(created_at,'%b') as month FROM money GROUP BY month ORDER BY created_at";
+  $result_monthly = $conn->query($sql_monthly);
+
+  $sql_revenue = "SELECT date_format(created_at,'%b') as month, SUM(amount - (SELECT SUM(amount) as value FROM money WHERE date_format(current_date()	,'%b') = date_format(created_at,'%b') AND is_income = FALSE)) as value FROM money WHERE date_format(current_date()	,'%b') = date_format(created_at,'%b') AND is_income = true";
+  $result_revenue = $conn->query($sql_revenue);
+  $data_revenue = $result_revenue->fetch_object();
   ?>
 
 </head>
@@ -131,19 +143,6 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
                   <h5 class="card-title">Vehicle Being Rent <span>| Today</span></h5>
 
@@ -165,19 +164,6 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
                   <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
@@ -186,7 +172,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>Rp.700000</h6>
+                      <h6>Rp.<?= $data_revenue->value ?></h6>
                       <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
 
                     </div>
@@ -200,19 +186,6 @@
             <div class="col-xxl-4 col-md-6">
 
               <div class="card info-card customers-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
 
                 <div class="card-body">
                   <h5 class="card-title">User Account Count</h5>
@@ -235,19 +208,6 @@
             <div class="col-xxl-4 col-md-6">
 
               <div class="card info-card customers-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
 
                 <div class="card-body">
                   <h5 class="card-title">Article Count</h5>
@@ -283,7 +243,87 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Status Vehicle <span>/Today</span></h5>
+                  <h5 class="card-title">Reports <span>| Monthly</span></h5>
+
+                  <!-- Line Chart -->
+                  <div id="reportsChart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#reportsChart"), {
+                        series: [{
+                          name: 'Income',
+                          data: [
+                            <?php while ($row = $result_monthly_income->fetch_assoc()) { ?>
+                              <?= $row['sale'] ?>,
+                            <?php } ?>
+                          ],
+                        }, {
+                          name: 'Spending',
+                          data: [
+                            <?php while ($row = $result_monthly_spending->fetch_assoc()) { ?>
+                              <?= $row['sale'] ?>,
+                            <?php } ?>
+                          ]
+                        }],
+                        chart: {
+                          height: 350,
+                          type: 'area',
+                          toolbar: {
+                            show: false
+                          },
+                        },
+                        markers: {
+                          size: 4
+                        },
+                        colors: ['#2eca6a', '#ff771d'],
+                        fill: {
+                          type: "gradient",
+                          gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.3,
+                            opacityTo: 0.4,
+                            stops: [0, 90, 100]
+                          }
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        stroke: {
+                          curve: 'smooth',
+                          width: 2
+                        },
+                        xaxis: {
+                          categories: [
+                            <?php while ($row = $result_monthly->fetch_assoc()) { ?>
+                              "<?php echo $row['month']; ?>",
+                            <?php } ?>
+                          ]
+                        }
+                        /* tooltip: {
+                          x: {
+                            format: 'dd/MM/yy HH:mm'
+                          },
+                        } */
+                      }).render();
+                    });
+                  </script>
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div>
+            <!-- End Reports -->
+
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+
+                <div class="card-body">
+                  <h5 class="card-title">Vehicles Status</h5>
 
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
@@ -365,21 +405,9 @@
 
           <!-- Website Traffic -->
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Vehicles <span>| Today</span></h5>
+              <h5 class="card-title">Vehicles <span>| Arsenal</span></h5>
               <?php
               $query_vehicle_availability = "SELECT vc.name, COUNT(v.id) as total FROM vehicle v LEFT JOIN vehicle_category vc on v.vehicle_category_id = vc.id GROUP BY vc.name";
               $result_vehicle_availability = $conn->query($query_vehicle_availability);
@@ -436,18 +464,6 @@
 
           <!-- News & Updates Traffic -->
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
 
             <?php
             $sql_articles = "SELECT * FROM article";
@@ -455,7 +471,7 @@
             ?>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+              <h5 class="card-title">News &amp; Updates <span>| Recently</span></h5>
 
               <div class="news">
                 <?php

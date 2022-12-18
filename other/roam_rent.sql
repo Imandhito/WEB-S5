@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2022 at 11:44 PM
+-- Generation Time: Dec 18, 2022 at 11:49 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -74,6 +74,41 @@ INSERT INTO `article_category` (`id`, `name`) VALUES
 (2, 'Travel'),
 (3, 'Life Hacks'),
 (4, 'Promo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `money`
+--
+
+CREATE TABLE `money` (
+  `id` bigint(20) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `is_income` tinyint(1) NOT NULL DEFAULT 0,
+  `amount` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `money`
+--
+
+INSERT INTO `money` (`id`, `created_at`, `is_income`, `amount`) VALUES
+(1, '2022-05-10', 0, 213456),
+(2, '2022-05-26', 1, 104000),
+(3, '2022-06-08', 0, 256478),
+(4, '2022-06-02', 1, 123456),
+(5, '2022-07-20', 0, 115476),
+(6, '2022-07-12', 1, 123456),
+(7, '2022-08-08', 0, 214532),
+(8, '2022-08-17', 1, 153246),
+(9, '2022-09-07', 0, 234567),
+(10, '2022-09-13', 1, 256478),
+(11, '2022-10-12', 0, 123456),
+(12, '2022-10-11', 1, 162345),
+(13, '2022-11-16', 0, 156479),
+(14, '2022-11-08', 1, 194563),
+(15, '2022-12-06', 0, 156324),
+(16, '2022-12-01', 1, 265356);
 
 -- --------------------------------------------------------
 
@@ -200,6 +235,12 @@ ALTER TABLE `article_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `money`
+--
+ALTER TABLE `money`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -233,6 +274,12 @@ ALTER TABLE `article`
 --
 ALTER TABLE `article_category`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `money`
+--
+ALTER TABLE `money`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user`
