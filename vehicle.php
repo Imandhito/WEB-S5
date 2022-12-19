@@ -116,16 +116,22 @@
           </nav>
         </div>
         <?php
-        if (strcmp($auth_role, "admin") == 0) {
-        ?>
-          <div class="col-3 d-flex justify-content-end align-items-center">
-            <a href="vehicle-manage.php" class="btn btn-primary"><i class="ri-edit-box-fill me-1"></i> Manage</a>
-            <a href='vehicle-print.php?sql=<?= $a ?>' class="btn btn-secondary ms-3"><i class="bx bxs-report me-1"></i> Print</a>
-          </div>
-        <?php
-        }
-        ?>
-
+  if (strcmp($auth_role, "admin") == 0) {
+    ?>
+    <div class="col-2 d-flex justify-content-end align-items-center">
+          <a href="vehicle-manage.php" class="btn btn-primary">Manage</a>
+         
+        </div>
+    <div class="col-1 d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-primary" onclick="window.print()">Print</button>
+         
+    </div>
+        
+        
+    <?php
+  }
+  ?>
+        
       </div>
     </div>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
