@@ -179,6 +179,7 @@
                 }
             });
         }
+        window.print()
     </script>
 </body>
 

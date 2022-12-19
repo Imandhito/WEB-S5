@@ -96,7 +96,7 @@
   <?php include('layout-script.php'); ?>
   <!-- End Script -->
 
-
+<script> window.print() </script>
 
     
 </body>

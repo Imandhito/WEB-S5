@@ -170,6 +170,7 @@
                 }
             });
         }
+     window.print() 
     </script>
 </body>
 
