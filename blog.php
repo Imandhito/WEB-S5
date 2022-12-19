@@ -170,7 +170,7 @@
                 <ul class="mt-3">
                   <?php while ($row = $result_article_category->fetch_assoc()) {
                   ?>
-                    <li><a href="#"><?= $row['name'] ?>
+                    <li><a href="blog.php?search=<?= $row['name'] ?>"><?= $row['name'] ?>
                         <!-- <span>(25)</span> -->
                       </a></li>
                   <?php } ?>
