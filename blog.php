@@ -31,9 +31,9 @@
 
 
   $a = !empty($_GET["search"]) ? $_GET["search"] : '';
-  $result_article = $conn->query("SELECT a.id, title, text, a.img_url, ac.name as category, article_category_id, u.name as author, u.role, u.email, u.job, u.about, u.profile_picture, u.twitter FROM article a INNER JOIN user u ON a.user_id=u.id INNER JOIN article_category ac ON a.article_category_id = ac.id WHERE u.name LIKE '%$a%' OR title LIKE '%$a%' ORDER BY a.id DESC LIMIT $halaman_awal, $batas");
+  $result_article = $conn->query("SELECT a.id, title, text, a.img_url, ac.name as category, article_category_id, u.name as author, u.role, u.email, u.job, u.about, u.profile_picture, u.twitter FROM article a INNER JOIN user u ON a.user_id=u.id INNER JOIN article_category ac ON a.article_category_id = ac.id WHERE u.name LIKE '%$a%' OR ac.name LIKE '%$a%' OR title LIKE '%$a%' ORDER BY a.id DESC LIMIT $halaman_awal, $batas");
 
-  $data = $conn->query("SELECT a.id, title, text, a.img_url, ac.name as category, article_category_id, u.name as author, u.role, u.email, u.job, u.about, u.profile_picture, u.twitter FROM article a INNER JOIN user u ON a.user_id=u.id INNER JOIN article_category ac ON a.article_category_id = ac.id WHERE u.name LIKE '%$a%' OR title LIKE '%$a%' ORDER BY a.id DESC");
+  $data = $conn->query("SELECT a.id, title, text, a.img_url, ac.name as category, article_category_id, u.name as author, u.role, u.email, u.job, u.about, u.profile_picture, u.twitter FROM article a INNER JOIN user u ON a.user_id=u.id INNER JOIN article_category ac ON a.article_category_id = ac.id WHERE u.name LIKE '%$a%' OR ac.name LIKE '%$a%' OR title LIKE '%$a%' ORDER BY a.id DESC");
   $jumlah_data = mysqli_num_rows($data);
   $total_halaman = ceil($jumlah_data / $batas);
 
