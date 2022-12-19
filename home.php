@@ -14,7 +14,7 @@
   include('logics/connect.php');
   include 'logics/auth-check.php';
 
-  $sql_article = 'SELECT * FROM article LIMIT 5';
+  $sql_article = 'SELECT * FROM article ORDER BY id DESC LIMIT 5';
   $result_article = $conn->query($sql_article);
 
   $sql_count_article = "SELECT COUNT(id) as total FROM article";
@@ -478,9 +478,9 @@
                 while ($row = $result_list_article->fetch_assoc()) {
                 ?>
 
-                  <div class="post-item clearfix">
+                  <div class="post-item clearfix mb-4">
                     <img src="assets/img/hero/blog/<?= $row['img_url'] ?>" alt="">
-                    <h4><a href="#"><?= $row['title'] ?></a></h4>
+                    <h4><a href="blog-details.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></h4>
                     <p></p>
                     <!-- <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p> -->
                   </div>

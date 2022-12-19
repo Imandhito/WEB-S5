@@ -531,7 +531,7 @@
                 <div class="portfolio-info">
                   <h4><?= $row['name'] ?></h4>
                   <a href="assets/img/hero/portfolio/2021-skoda-octavia-rs.jpg" title="App 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="item_detail.php?id=<?= $row['id'] ?>" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="vehicle-detail.php?id=<?= $row['id'] ?>" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div><!-- End Portfolio Item -->
 

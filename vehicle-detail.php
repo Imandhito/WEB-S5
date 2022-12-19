@@ -163,7 +163,7 @@
                   <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <strong>Pastikan anda telah membaca dan menyetujui aturan yang ada dan selalu mematuhi segala peraturan yang ada!.</strong>
-                      <a href="item_detail.html" class="active">
+                      <a href="#" class="active">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-tags me-1"></i>
                           Sewa
