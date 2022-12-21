@@ -49,18 +49,18 @@
       </li><!-- End Vehicles Nav -->
 
       <?php
-  if (strcmp($auth_role, "admin") == 0) {
-    ?>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="vehicle-category.php">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Vehicles Category</span>
-        </a>
-      </li><!-- End Vehicles Nav -->
-    <?php
-  }
-  ?>
-      
+      if (strcmp($auth_role, "admin") == 0) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="vehicle-category.php">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Vehicles Category</span>
+          </a>
+        </li><!-- End Vehicles Nav -->
+      <?php
+      }
+      ?>
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users.php">
@@ -72,19 +72,25 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link " href="blog.html">
+        <a class="nav-link collapsed" href="blog.php">
           <i class="bi bi-grid"></i>
           <span>News</span>
         </a>
       </li><!-- End News Nav -->
 
       <li class="nav-item">
-    <a class="nav-link collapsed" href="blog-category.php">
-      <i class="bi bi-grid"></i>
-      <span>Category</span>
-    </a>
-  </li><!-- End News Nav -->
+        <a class="nav-link " href="blog.php">
+          <i class="bi bi-grid"></i>
+          <span>Manage News</span>
+        </a>
+      </li><!-- End News Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog-category.php">
+          <i class="bi bi-grid"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End News Nav -->
     </ul>
 
   </aside>
@@ -144,7 +150,7 @@
                   </div>
                   <div class="col-12">
                     <label for="inputText" class="form-label">News Text</label>
-                    <input type="text" name="text" class="form-control" id="inputText" placeholder="Text" value="<?= $data->text ?>">
+                    <textarea class="form-control" id="inputText" name="text" style="height:1000px"><?= $data->text ?></textarea>
                   </div>
                     <input name="id_article" type="hidden" value="<?= $data->id ?>" />
                   <div class="col-12">
@@ -158,7 +164,8 @@
                     </select>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary" style="margin-top:10px;">Submit</button>
+                    <a href="blog-manage.php" class="btn btn-info me-3 mt-2">Go Back</a>
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
                   </div>
                 </form>`
               </form><!-- Vertical Form -->

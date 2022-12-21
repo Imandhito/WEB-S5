@@ -12,4 +12,4 @@ $category = $_POST["category"];
 
     $conn->query($sql);
 
-    header("location: ../blog.php");
+    header("location: ../blog-details?id=$id.php");

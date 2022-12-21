@@ -68,9 +68,16 @@ $result_category = $conn->query($sql_category);
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link " href="blog.php">
+        <a class="nav-link collapsed" href="blog.php">
           <i class="bi bi-grid"></i>
           <span>News</span>
+        </a>
+      </li><!-- End News Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="blog.php">
+          <i class="bi bi-grid"></i>
+          <span>Manage News</span>
         </a>
       </li><!-- End News Nav -->
 

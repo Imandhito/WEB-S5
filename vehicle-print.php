@@ -123,9 +123,12 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 
-
+    <script>
+        window.print()
 
     <script>
+        window.print()
+
         function deleteConfirm(id) {
             Swal.fire({
                 title: "Are you sure?",

@@ -10,7 +10,7 @@ $id=$_GET['id'];
 
 $sql = "DELETE FROM article WHERE id=".$id;
 $conn->query($sql);
-header("Location: ../blog.php");
+header("Location: ../blog-manage.php");
 // if (){
 //     echo $id;
 // } else {
